@@ -1,0 +1,5 @@
+MOG station for ff14 (needs cleaner flow, so you can do stuff)
+newegg (easy to find things like how it works)
+the epic games website (nightmare that started without a search bar also made by one person in epic games whitch is why i like it.)
+the website for dragons dogma 2 ( clean and pretty, however not alot of useful info)
+youtube ( constantly changing and moving things makes it hard to use somtimes.)
