@@ -1,3 +1,12 @@
 body {
-    background-color: rgb(85, 0, 255);
+    background-color: rgb(17, 255, 0);
+}
+
+div#paragragh {
+    float: right;
+    width: 50%;
+}
+div#Rickrolling{
+    position: relative;
+    left: 45%;
 }
