@@ -1,0 +1,129 @@
+/* 
+class attribute
+class selector
+id attribute
+id selector
+role attribute
+attribute selectors
+font family
+font size
+font style
+font variant
+font weight
+font property shorthand
+text align
+text decoration
+line height
+color (in a few ways)
+border and shorthand
+padding and shorthand
+margin and shorthand
+*/
+
+h1 {
+  text-shadow: 1px 1px red;
+}
+
+/* h1::before{
+  content: 'Original Text';
+  font-size: 100%;
+  animation-name: head;
+  animation-duration: 50s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes head {
+  0%   { content: "10";}
+  2%   { content: "10"; }
+  4%   { content: "9"; }
+  6%   { content: "8"; }
+  8%   { content: "7"; }
+  10%  { content: "6"; }
+  12%  { content: "5"; }
+  14%  { content: "4"; }
+  16%  { content: "3"; }
+  18%  { content: "2"; }
+  20%  { content: "10";}
+  22%  { content: "9"; }
+  24%  { content: "8"; }
+  26%  { content: "7"; }
+  28%  { content: "10";}
+  30%  { content: "9"; }
+  32%  { content: "8"; }
+  34%  { content: "7"; }
+  36%  { content: "6"; }
+  38%  { content: "5"; }
+  40%  { content: "8"; }
+  42%  { content: "8"; }
+  44%  { content: "8"; }
+  46%  { content: "8"; }
+  48%  { content: "8"; }
+  50%  { content: "8"; }
+  52%  { content: "8"; }
+  54%  { content: "8"; }
+  56%  { content: "8"; }
+  58%  { content: "8"; }
+  60%  { content: "8"; }
+  62%  { content: "8"; }
+  64%  { content: "8"; }
+  66%  { content: "8"; }
+  68%  { content: "8"; }
+  70%  { content: "8"; }
+  72%  { content: "8"; }
+  74%  { content: "8"; }
+  76%  { content: "8"; }
+  78%  { content: "8"; }
+  80%  { content: "8"; }
+  82%  { content: "8"; }
+  84%  { content: "8"; }
+  86%  { content: "8"; }
+  88%  { content: "8"; }
+  90%  { content: "8"; }
+  92%  { content: "8"; }
+  94%  { content: "8"; }
+  96%  { content: "8"; }
+  98%  { content: "8"; }
+  100% { content: "8"; }
+} */
+
+
+/* The element to apply the animation to */
+#virus-gif { /* applies to the anchor */
+  width: 69px;
+  height: 69px;
+  position: absolute;
+  animation-name: bouncy-virus;
+  animation-duration: 16s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  z-index: 2000;
+}
+#virus-gif-image { /* applies to the image in the anchor */
+  width: 69px;
+  height: 69px;
+  border: 5px solid #000000;
+  z-index: -20;
+  opacity: .2;
+}
+@keyframes bouncy-virus {
+  0% {
+    left: 0%;
+    top: 50%;
+  }
+  25% {
+    left: 50%;
+    top: 0%;
+  }
+  50% {
+    left: 100%;
+    top: 50%;
+  }
+  75% {
+    left: 50%;
+    top: 100%;
+  }
+  100% {
+    left: 0%;
+    top: 50%;
+  }
+}
