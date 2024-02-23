@@ -1,25 +1,3 @@
-/* 
-class attribute
-class selector
-id attribute
-id selector
-role attribute
-attribute selectors
-font family
-font size
-font style
-font variant
-font weight
-font property shorthand
-text align
-text decoration
-line height
-color (in a few ways)
-border and shorthand
-padding and shorthand
-margin and shorthand
-*/
-
 h1 {
   text-shadow: 1px 1px red;
 }
@@ -84,46 +62,34 @@ h1 {
   96%  { content: "8"; }
   98%  { content: "8"; }
   100% { content: "8"; }
-} */
+}*/
 
 
 /* The element to apply the animation to */
-#virus-gif { /* applies to the anchor */
+#da-gobin-object { /* applies to the anchor */
   width: 69px;
   height: 69px;
   position: absolute;
-  animation-name: bouncy-virus;
-  animation-duration: 16s;
-  animation-iteration-count: infinite;
+  animation-name: gobin-wigglin;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
   animation-timing-function: linear;
   z-index: 2000;
 }
-#virus-gif-image { /* applies to the image in the anchor */
+#da-gobin-image { /* applies to the image in the anchor */
   width: 69px;
   height: 69px;
-  border: 5px solid #000000;
-  z-index: -20;
-  opacity: .2;
+  /* border: 5px solid #000000; */
+  z-index: -289580270;
+  opacity: 1;
 }
-@keyframes bouncy-virus {
+@keyframes gobin-wigglin {
   0% {
-    left: 0%;
-    top: 50%;
-  }
-  25% {
     left: 50%;
-    top: 0%;
-  }
-  50% {
-    left: 100%;
     top: 50%;
-  }
-  75% {
-    left: 50%;
-    top: 100%;
   }
   100% {
-    left: 0%;
+    left: 50%;
     top: 50%;
   }
 }
