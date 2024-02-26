@@ -69,27 +69,32 @@ h1 {
 #da-gobin-object {
   display: inline-block;
   background-image: url("../assets/Cropandacoon.png");
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   /* border: none; */
 
   width: 100%;
   height: 100%;
 
   position: absolute;
-  
-  /* z-index: 2000; */
-  top: 30%;
-  left: 30%;
 }
 
-
-#da-gobin-div {
-  /* animation-name: gobin-wigglin;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-delay: 1s; */
+#da-crit-bocks {
+  display: inline-block;
+  background-size: cover;
+  /* min-width: 1px;
+  width: 1px; */
+  height: 10px;
   
+  /* z-index: -2000; */
+  position: absolute;
+  top: 60%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+}
+
+/* #da-gobin-div {
   position: absolute;
   width: 6.9%;
   height: 6.9%;
@@ -97,24 +102,11 @@ h1 {
   top: 30%;
 }
 
-/* #da-gobin-div {
+#da-gobin-div-animation {
   animation-name: gobin-wigglin;
   animation-duration: 3s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-  animation-delay: 1s;
-} */
-
-#da-crit-bocks {
-  display: inline-block;
-  background-size: cover;
-  /* width: 1px; */
-  height: 10px;
-  
-  /* z-index: 2000; */
-  position: absolute;
-  top: 70%;
-  left: 60%;
 }
 
 @keyframes gobin-wigglin {
@@ -126,4 +118,4 @@ h1 {
     left: 60%;
     top: 60%;
   }
-}
+} */

@@ -1,24 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
+    <!-- Meta Stuff -->
     <meta charset="UTF-8">
     <meta name="description" content="All ya gotta do is kill Bob.">
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="John Doe">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link Modifier -->
     <base target="_blank" rel="noopener noreferrer">
 
-    <link rel="stylesheet" href="style/I_got_style.css">
-    <script src="scripts/move.js"></script>
+    <!-- Style and JS File Links -->
+    <link rel="stylesheet" href="./style/I_got_style.css">
+    <style>
+      #da-gobin-div {
+        position: absolute;
+        width: 6.9%;
+        height: 6.9%;
+        left: 30%;
+        top: 30%;
+      }
 
+      #da-gobin-div-animation {
+        animation-name: gobin-wigglin;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+
+      @keyframes gobin-wigglin {
+        0% {
+          left: 30%;
+          top: 30%;
+        }
+        100% {
+          left: 60%;
+          top: 60%;
+        }
+      }
+    </style>
+    <script src="./scripts/move.js"></script>
+
+    <!-- Script Initializer -->
+    <script type="text/javascript">
+
+      window.onload = init;
+    </script>
+
+    <!-- Tab Display Title/Favicon -->
     <link rel="icon" href="assets/cropandacoon.png">
     <title>Steal Bob's Loot</title>
+
   </head>
+
   <body>
+
+    <!-- The Clickable Goblin -->
     <div id="da-gobin-div">
       <button id="da-gobin-object" onclick="showAlert('Normal thefting')">
+        <!-- The Crit Box -->
         <button id="da-crit-bocks" onclick="showAlert('Crit!')"></button>
       </button>
     </div>
+
   </body>
+
 </html>
