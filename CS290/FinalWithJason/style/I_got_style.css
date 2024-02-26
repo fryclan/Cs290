@@ -66,30 +66,64 @@ h1 {
 
 
 /* The element to apply the animation to */
-#da-gobin-object { /* applies to the anchor */
-  width: 69px;
-  height: 69px;
+#da-gobin-object {
+  display: inline-block;
+  background-image: url("../assets/Cropandacoon.png");
+  background-size: cover;
+  /* border: none; */
+
+  width: 100%;
+  height: 100%;
+
   position: absolute;
-  animation-name: gobin-wigglin;
-  animation-duration: 1s;
-  animation-iteration-count: 1;
+  
+  /* z-index: 2000; */
+  top: 30%;
+  left: 30%;
+}
+
+
+#da-gobin-div {
+  /* animation-name: gobin-wigglin;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
   animation-timing-function: linear;
-  z-index: 2000;
+  animation-delay: 1s; */
+  
+  position: absolute;
+  width: 6.9%;
+  height: 6.9%;
+  left: 30%;
+  top: 30%;
 }
-#da-gobin-image { /* applies to the image in the anchor */
-  width: 69px;
-  height: 69px;
-  /* border: 5px solid #000000; */
-  z-index: -289580270;
-  opacity: 1;
+
+/* #da-gobin-div {
+  animation-name: gobin-wigglin;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-delay: 1s;
+} */
+
+#da-crit-bocks {
+  display: inline-block;
+  background-size: cover;
+  /* width: 1px; */
+  height: 10px;
+  
+  /* z-index: 2000; */
+  position: absolute;
+  top: 70%;
+  left: 60%;
 }
+
 @keyframes gobin-wigglin {
   0% {
-    left: 50%;
-    top: 50%;
+    left: 30%;
+    top: 30%;
   }
   100% {
-    left: 50%;
-    top: 50%;
+    left: 60%;
+    top: 60%;
   }
 }
