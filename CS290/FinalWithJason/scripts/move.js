@@ -110,6 +110,8 @@ function Init()
 
     // Start CPS
     setInterval(CPSUpgradeInterval, 1000);
+
+    // Anticheat and bug fixer move every 5 seconds
     setInterval(hovered, 5000);
 }
 
