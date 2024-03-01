@@ -10,7 +10,8 @@ let GOLDCOUNTDIV;
 let CPCDIV;
 
 let Gold = 0;
-let GoldIncrement = 1;
+let GoldClickIncrement = 1;
+let GoldSecondIncrement = 0;
 let CritMultiplier = 2;
 
 let HoveringOrMoving = false;
@@ -69,9 +70,10 @@ let CPCUpgradePrice =
 
 function CPSUpgradeInterval()
 {
-    Gold += ChildProtectiveServicesUpgradeValue["Type 1"] * ChildProtectiveServicesUpgradePower["Type 1"];
-    Gold += ChildProtectiveServicesUpgradeValue["Type 2"] * ChildProtectiveServicesUpgradePower["Type 2"];
-    Gold += ChildProtectiveServicesUpgradeValue["Type 3"] * ChildProtectiveServicesUpgradePower["Type 3"];
+    // Gold += ChildProtectiveServicesUpgradeValue["Type 1"] * ChildProtectiveServicesUpgradePower["Type 1"];
+    // Gold += ChildProtectiveServicesUpgradeValue["Type 2"] * ChildProtectiveServicesUpgradePower["Type 2"];
+    // Gold += ChildProtectiveServicesUpgradeValue["Type 3"] * ChildProtectiveServicesUpgradePower["Type 3"];
+    Gold += GoldSecondIncrement;
     
     GOLDCOUNTDIV.innerHTML = Gold;
 }
@@ -80,12 +82,12 @@ function ClickCounter(click)
 {
     if (click == 'Normal thefting')
     {
-        Gold = Gold + GoldIncrement + (GoldIncrement * Stati["PuncturedBag"]);
+        Gold = Gold + GoldClickIncrement + (GoldClickIncrement * Stati["PuncturedBag"]);
         GOLDCOUNTDIV.innerHTML = Gold;
     }
     else if (click == 'Crit!')
     {
-        Gold = Gold + GoldIncrement * CritMultiplier + (GoldIncrement * CritMultiplier * Stati["PuncturedBag"]);
+        Gold = Gold + GoldClickIncrement * CritMultiplier + (GoldClickIncrement * CritMultiplier * Stati["PuncturedBag"]);
         GOLDCOUNTDIV.innerHTML = Gold;
     }
 }
@@ -224,6 +226,8 @@ function CpsButton(UpgradeNumber)
             ("CPS Upgrade type " + UpgradeNumber +
             "<br>CPS: " + (ChildProtectiveServicesUpgradeValue["Type " + UpgradeNumber] * ChildProtectiveServicesUpgradePower["Type " + UpgradeNumber]) +
             "<br>Cost: " + UpgradeCost)
+        GoldSecondIncrement += ChildProtectiveServicesUpgradePower["Type " + UpgradeNumber];
+        CPCDIV.innerHTML = "Clicks Per Clicks:" + GoldClickIncrement + " | " + "Clicks Per Second:" + GoldSecondIncrement;
     }
 }
 
@@ -243,8 +247,8 @@ function CpcButton(UpgradeNumber)
             ("CPC Upgrade type " + UpgradeNumber +
             "<br>CPC: " + (CPCUpgradeValue["Type " + UpgradeNumber] * CPCUpgradePower["Type " + UpgradeNumber]) +
             "<br>Cost: " + UpgradeCost);
-        GoldIncrement += CPCUpgradePower["Type " + UpgradeNumber];
-        CPCDIV.innerHTML = "Clicks Per Clicks:" + GoldIncrement;
+        GoldClickIncrement += CPCUpgradePower["Type " + UpgradeNumber];
+        CPCDIV.innerHTML = "Clicks Per Clicks:" + GoldClickIncrement + " | " + "Clicks Per Second:" + GoldSecondIncrement;
     }
 }
 
