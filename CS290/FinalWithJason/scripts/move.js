@@ -9,6 +9,16 @@ let GOBINDIV;
 
 let hoveringOrMoving = false;
 
+let Stati = {
+    "Slowed": 0,
+    "Restrained": 0,
+    "Vulnerable": 0,
+    "Distracted": 0,
+    "PuncturedBag": 0,
+};
+// Usage:
+// dict["some invalid key (for multiple reasons)"] = "value1";
+
 
 function showAlert(msg) {
     alert(msg);
