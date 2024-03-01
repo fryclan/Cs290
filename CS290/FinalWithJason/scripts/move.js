@@ -24,12 +24,26 @@ let Stati =
     "PuncturedBag": 0,
 };
 
-let ChildProtectiveServicesUpgrades =
+let ChildProtectiveServicesUpgradeValues =
 {
     "Type 1": 0,
     "Type 2": 0,
     "Type 3": 0,
 };
+
+let ChildProtectiveServicesUpgradePrices =
+{
+    "Type 1": 10,
+    "Type 2": 100,
+    "Type 3": 1000,
+};
+
+function CPSUpgradeInterval()
+{
+    Gold += ChildProtectiveServicesUpgradeValues["Type 1"] * 1;
+    Gold += ChildProtectiveServicesUpgradeValues["Type 2"] * 10;
+    Gold += ChildProtectiveServicesUpgradeValues["Type 3"] * 100;
+}
 
 function ClickCounter(click)
 {
