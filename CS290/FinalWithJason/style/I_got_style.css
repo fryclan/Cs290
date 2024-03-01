@@ -57,12 +57,11 @@ h1 {
 #da-crit-bocks {
   display: inline-block;
   background-size: cover;
-  /* min-width: 1px;
-  width: 1px; */
-  height: 10px;
-  /* opacity: 0.0; */
+  /* min-width: 1px; */
+  width: 1px;
+  height: 5%;
+  opacity: 0.25;
   
-  /* z-index: -2000; */
   position: absolute;
   top: 60%;
   left: 45%;
@@ -110,30 +109,3 @@ h1 {
   background-color: #04AA6D;
   color: white;
 }
-
-
-/* #da-gobin-div {
-  position: absolute;
-  width: 6.9%;
-  height: 6.9%;
-  left: 30%;
-  top: 30%;
-}
-
-#da-gobin-div-animation {
-  animation-name: gobin-wigglin;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-}
-
-@keyframes gobin-wigglin {
-  0% {
-    left: 30%;
-    top: 30%;
-  }
-  100% {
-    left: 60%;
-    top: 60%;
-  }
-} */
