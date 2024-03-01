@@ -110,6 +110,7 @@ function Init()
 
     // Start CPS
     setInterval(CPSUpgradeInterval, 1000);
+    setInterval(hovered, 5000);
 }
 
 
