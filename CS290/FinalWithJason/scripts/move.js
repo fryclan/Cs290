@@ -1,41 +1,51 @@
-let newLeft = 50, newTop = 50; // % accross the screen
-let oldLeft = 50, oldTop = 50; 
-const LOWERLEFTBOUND = 10, LOWERTOPBOUND = 10, UPPERLEFTBOUND = 90, UPPERTOPBOUND = 90; 
+let NewLeft = 50, NewTop = 50; // % accross the screen
+let OldLeft = 50, OldTop = 50; 
+const LOWERLEFTBOUND = 10, LOWERTOPBOUND = 10, UPPERLEFTBOUND = 90, UPPERTOPBOUND = 90; // Limits to where it can be
 
 const HOVERDELAY = 300, IDLEMOVEDELAY = 5000, MOVETIME = 1000-25; // Milliseconds
 
 let GOBINWIGGLIN;
 let GOBINDIV;
 let GoldCountDiv;
-let gold = Number("0");
 
-let hoveringOrMoving = false;
+let Gold = 0;
+let GoldIncrement = 1;
+let CritMultiplier = 2;
 
-let Stati = {
+let HoveringOrMoving = false;
+
+// Current applied status effects
+let Stati =
+{
     "Slowed": 0,
     "Restrained": 0,
     "Vulnerable": 0,
     "Distracted": 0,
     "PuncturedBag": 0,
 };
-// Usage:
-// dict["some invalid key (for multiple reasons)"] = "value1";
+
+let ChildProtectiveServicesUpgrades =
+{
+    "Type 1": 0,
+    "Type 2": 0,
+    "Type 3": 0,
+};
 
 function ClickCounter(click)
 {
     if (click == 'Normal thefting')
     {
-        gold = gold + 1;
-        GoldCountDiv.innerHTML = gold;
+        Gold = Gold + 1 + (1 * Stati["PuncturedBag"]);
+        GoldCountDiv.innerHTML = Gold;
     }
     else if (click == 'Crit!')
     {
-        gold = gold + 2;
-        GoldCountDiv.innerHTML = gold;
+        Gold = Gold + 2 + (2 * Stati["PuncturedBag"]);
+        GoldCountDiv.innerHTML = Gold;
     }
 }
 
-function init() 
+function Init()
 {
     GoldCountDiv = document.getElementById('Gold')
     GOBINDIV = document.getElementById('da-gobin-div');
@@ -51,7 +61,7 @@ function init()
  * @param {Number} max The highest number it can output.
  * @returns {Number} A random number between the two, inclusive.
  */
-function getRandomInt(min, max)
+function GetRandomInt(min, max)
 {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -61,22 +71,27 @@ function getRandomInt(min, max)
  * Searches throughout all attatched CSS files to find the specified rule. Used here primarily to get keyframes.
  * @date 2/28/2024 - 9:46:30 AM
  *
- * @param {String} selector The name of the rule being searched for.
+ * @param {String} Selector The name of the rule being searched for.
  * @returns {CSSRule} The variable containing the rule.
  */
-function findCssRuleByName(selector) {
-    const styleSheets = document.styleSheets;
+function FindCssRuleByName(Selector)
+{
+    const StyleSheets = document.styleSheets;
   
-    for (const sheet of styleSheets) {
+    for (const Sheet of StyleSheets)
+    {
         try {
-            const rules = sheet.cssRules || sheet.rules;
-            for (const rule of rules) {
-                if (rule.name === selector) {
-                return rule;
+            const Rules = Sheet.cssRules || Sheet.rules;
+            for (const Rule of Rules)
+            {
+                if (Rule.name === Selector)
+                {
+                    return Rule;
                 }
             }
-        } catch (e) {
-            console.warn("Can't read the css rules of: " + sheet.href, e);
+        } catch (e)
+        {
+            console.warn("Can't read the css rules of: " + Sheet.href, e);
         }
     }
   
@@ -88,53 +103,57 @@ function findCssRuleByName(selector) {
  * Run when hovering is detected or when a random shuffle is requested, randomizes the opsition of a character and moves there
  * @date 2/28/2024 - 10:06:09 AM
  */
-function hovered() {
+function hovered()
+{
     
-    if (!hoveringOrMoving) {
+    if (!HoveringOrMoving)
+    {
         // Turned back off at the end of the pause and animation.
-        hoveringOrMoving = true;
+        HoveringOrMoving = true;
 
         // The animation keyframes
-        GOBINWIGGLIN = findCssRuleByName('gobin-wigglin');
+        GOBINWIGGLIN = FindCssRuleByName('gobin-wigglin');
 
 
         // Set the start and end points for the animation and final position.
-        oldLeft = newLeft;
-        oldTop = newTop;
-        newTop = getRandomInt(LOWERTOPBOUND, UPPERTOPBOUND);
-        newLeft = getRandomInt(LOWERLEFTBOUND, UPPERLEFTBOUND);
+        OldLeft = NewLeft;
+        OldTop = NewTop;
+        NewTop = GetRandomInt(LOWERTOPBOUND, UPPERTOPBOUND);
+        NewLeft = GetRandomInt(LOWERLEFTBOUND, UPPERLEFTBOUND);
 
         // Pauses for a random delay between 0 and .5 seconds before moving.
-        setTimeout(() => {
+        setTimeout(() =>
+        {
 
             // Get the CSS root element to modify the vars.
             const ROOTSTYLE = document.querySelector(':root').style;
 
             // Modify the CSS vars.
-            ROOTSTYLE.setProperty('--old-left', oldLeft+"%");
-            ROOTSTYLE.setProperty('--new-left', newLeft+"%");
-            ROOTSTYLE.setProperty('--old-top', oldTop+"%");
-            ROOTSTYLE.setProperty('--new-top', newTop+"%");
+            ROOTSTYLE.setProperty('--old-left', OldLeft+"%");
+            ROOTSTYLE.setProperty('--new-left', NewLeft+"%");
+            ROOTSTYLE.setProperty('--old-top', OldTop+"%");
+            ROOTSTYLE.setProperty('--new-top', NewTop+"%");
 
             // Add the class which contains the animation details to the gobin to begin the animation.
             GOBINDIV.classList.add('da-gobin-div-animated');
             
             // Wait for the animation to end.
-            setTimeout(function() {
+            setTimeout(function()
+            {
 
                 // Set the variables which tell the object where to stay after the end of the animation.
-                ROOTSTYLE.setProperty('--stay-left', newLeft+"%");
-                ROOTSTYLE.setProperty('--stay-top', newTop+"%");
+                ROOTSTYLE.setProperty('--stay-left', NewLeft+"%");
+                ROOTSTYLE.setProperty('--stay-top', NewTop+"%");
                 
                 // Remove the class so it can re-add it to start the animation again.
                 GOBINDIV.classList.remove('da-gobin-div-animated');
 
                 // Reset the variable so it can move when hovered again.
-                hoveringOrMoving = false;
+                HoveringOrMoving = false;
 
             }, MOVETIME);
 
-        }, getRandomInt(0, 500));
+        }, GetRandomInt(0, 500));
 
     }
 
@@ -156,11 +175,15 @@ function CpsAddition()
 }
 
 /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
-function myFunction() {
+function myFunction()
+{
     var x = document.getElementById("myLinks");
-    if (x.style.display === "block") {
+    if (x.style.display === "block")
+    {
       x.style.display = "none";
-    } else {
+    }
+    else
+    {
       x.style.display = "block";
     }
 }
