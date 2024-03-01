@@ -24,6 +24,13 @@ let Stati =
     "PuncturedBag": 0,
 };
 
+let ChildProtectiveServicesUpgrades =
+{
+    "Type 1": 0,
+    "Type 2": 0,
+    "Type 3": 0,
+};
+
 function ClickCounter(click)
 {
     if (click == 'Normal thefting')
