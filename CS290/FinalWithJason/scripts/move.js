@@ -173,6 +173,21 @@ function hovered()
 
 }
 
+function CpsButton()
+{
+    if (gold >= 10)
+    {
+        gold = gold-10;
+        GoldCountDiv.innerHTML = gold;
+        setInterval(CpsAddition, 1000);
+    }
+}
+function CpsAddition()
+{
+    gold = gold+1;
+    GoldCountDiv.innerHTML = gold;
+}
+
 /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
 function myFunction()
 {
