@@ -181,7 +181,7 @@ function hovered()
 function CpsButton(UpgradeNumber)
 {
 
-    let UpgradeCost = ChildProtectiveServicesUpgradePrices["Type " + UpgradeNumber]
+    let UpgradeCost = ChildProtectiveServicesUpgradePrices["Type " + UpgradeNumber];
     if (Gold >= UpgradeCost)
     {
         Gold = Gold - UpgradeCost;
@@ -189,6 +189,7 @@ function CpsButton(UpgradeNumber)
 
         ChildProtectiveServicesUpgradeValues["Type " + UpgradeNumber] += 1;
         ChildProtectiveServicesUpgradePrices["Type " + UpgradeNumber] *= 2;
+        UpgradeCost = ChildProtectiveServicesUpgradePrices["Type " + UpgradeNumber];
         document.getElementById("CPS type " + UpgradeNumber).innerHTML = ("CPS Upgrade type " + UpgradeNumber + "<br>Cost: " + UpgradeCost)
     }
 }
