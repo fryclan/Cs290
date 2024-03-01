@@ -24,7 +24,7 @@ let Stati =
     "PuncturedBag": 0,
 };
 
-let ChildProtectiveServicesUpgradeValues =
+let ChildProtectiveServicesUpgradeValue =
 {
     "Type 1": 0,
     "Type 2": 0,
@@ -38,7 +38,7 @@ let ChildProtectiveServicesUpgradePower =
     "Type 3": 100,
 };
 
-let ChildProtectiveServicesUpgradePrices =
+let ChildProtectiveServicesUpgradePrice =
 {
     "Type 1": 10,
     "Type 2": 100,
@@ -47,9 +47,9 @@ let ChildProtectiveServicesUpgradePrices =
 
 function CPSUpgradeInterval()
 {
-    Gold += ChildProtectiveServicesUpgradeValues["Type 1"] * ChildProtectiveServicesUpgradePower["Type 1"];
-    Gold += ChildProtectiveServicesUpgradeValues["Type 2"] * ChildProtectiveServicesUpgradePower["Type 2"];
-    Gold += ChildProtectiveServicesUpgradeValues["Type 3"] * ChildProtectiveServicesUpgradePower["Type 3"];
+    Gold += ChildProtectiveServicesUpgradeValue["Type 1"] * ChildProtectiveServicesUpgradePower["Type 1"];
+    Gold += ChildProtectiveServicesUpgradeValue["Type 2"] * ChildProtectiveServicesUpgradePower["Type 2"];
+    Gold += ChildProtectiveServicesUpgradeValue["Type 3"] * ChildProtectiveServicesUpgradePower["Type 3"];
     
     GoldCountDiv.innerHTML = Gold;
 }
@@ -188,15 +188,15 @@ function hovered()
 function CpsButton(UpgradeNumber)
 {
 
-    let UpgradeCost = ChildProtectiveServicesUpgradePrices["Type " + UpgradeNumber];
+    let UpgradeCost = ChildProtectiveServicesUpgradePrice["Type " + UpgradeNumber];
     if (Gold >= UpgradeCost)
     {
         Gold = Gold - UpgradeCost;
         GoldCountDiv.innerHTML = Gold;
 
-        ChildProtectiveServicesUpgradeValues["Type " + UpgradeNumber] += 1;
-        ChildProtectiveServicesUpgradePrices["Type " + UpgradeNumber] *= 2;
-        UpgradeCost = ChildProtectiveServicesUpgradePrices["Type " + UpgradeNumber];
+        ChildProtectiveServicesUpgradeValue["Type " + UpgradeNumber] += 1;
+        ChildProtectiveServicesUpgradePrice["Type " + UpgradeNumber] *= 2;
+        UpgradeCost = ChildProtectiveServicesUpgradePrice["Type " + UpgradeNumber];
         document.getElementById("CPS type " + UpgradeNumber).innerHTML =
             ("CPS Upgrade type " + UpgradeNumber +
             "<br>CPS: " + (ChildProtectiveServicesUpgradeValue["Type " + UpgradeNumber] * ChildProtectiveServicesUpgradePower["Type " + UpgradeNumber]) +
