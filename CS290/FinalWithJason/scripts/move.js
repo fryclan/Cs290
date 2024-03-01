@@ -79,7 +79,7 @@ function ClickCounter(click)
 {
     if (click == 'Normal thefting')
     {
-        Gold = Gold + 1 + (GoldIncrement * Stati["PuncturedBag"]);
+        Gold = Gold + GoldIncrement + (GoldIncrement * Stati["PuncturedBag"]);
         GoldCountDiv.innerHTML = Gold;
     }
     else if (click == 'Crit!')
@@ -225,10 +225,39 @@ function CpsButton(UpgradeNumber)
     }
 }
 
+function CpcButton(UpgradeNumber)
+{
+    
+    let UpgradeCost = CPCUpgradePrice["Type " + UpgradeNumber];
+    if (Gold >= UpgradeCost)
+    {
+        Gold = Gold - UpgradeCost;
+        GoldCountDiv.innerHTML = Gold;
+
+        CPCUpgradeValue["Type " + UpgradeNumber] += 1;
+        CPCUpgradePrice["Type " + UpgradeNumber] *= 2;
+        UpgradeCost = CPCUpgradePrice["Type " + UpgradeNumber];
+        document.getElementById("CPC type " + UpgradeNumber).innerHTML =
+            ("CPC Upgrade type " + UpgradeNumber +
+            "<br>CPC: " + (CPCUpgradeValue["Type " + UpgradeNumber] * CPCUpgradePower["Type " + UpgradeNumber]) +
+            "<br>Cost: " + UpgradeCost);
+        GoldIncrement = CPCUpgradeValue["Type " + UpgradeNumber]*CPCUpgradePower["Type " + UpgradeNumber];
+    }
+}
+
 /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
 function myFunction()
 {
-    var x = document.getElementById("myLinks");
+    var x = document.getElementById("myLinks1");
+    if (x.style.display === "block")
+    {
+      x.style.display = "none";
+    }
+    else
+    {
+      x.style.display = "block";
+    }
+    var x = document.getElementById("myLinks2");
     if (x.style.display === "block")
     {
       x.style.display = "none";
