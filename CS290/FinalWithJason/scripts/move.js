@@ -45,6 +45,27 @@ let ChildProtectiveServicesUpgradePrice =
     "Type 3": 1000,
 };
 
+let CPCUpgradeValue =
+{
+    "Type 1": 0,
+    "Type 2": 0,
+    "Type 3": 0,
+};
+
+let CPCUpgradePower =
+{
+    "Type 1": 1,
+    "Type 2": 10,
+    "Type 3": 100,
+};
+
+let CPCUpgradePrice =
+{
+    "Type 1": 10,
+    "Type 2": 100,
+    "Type 3": 1000,
+};
+
 function CPSUpgradeInterval()
 {
     Gold += ChildProtectiveServicesUpgradeValue["Type 1"] * ChildProtectiveServicesUpgradePower["Type 1"];
@@ -58,12 +79,12 @@ function ClickCounter(click)
 {
     if (click == 'Normal thefting')
     {
-        Gold = Gold + GoldIncrement + (1 * Stati["PuncturedBag"]);
+        Gold = Gold + GoldIncrement + (GoldIncrement * Stati["PuncturedBag"]);
         GoldCountDiv.innerHTML = Gold;
     }
     else if (click == 'Crit!')
     {
-        Gold = Gold + 2 + (2 * Stati["PuncturedBag"]);
+        Gold = Gold + GoldIncrement * CritMultiplier + (GoldIncrement * CritMultiplier * Stati["PuncturedBag"]);
         GoldCountDiv.innerHTML = Gold;
     }
 }
