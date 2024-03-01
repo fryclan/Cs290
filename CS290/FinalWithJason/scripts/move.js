@@ -227,7 +227,7 @@ function CpsButton(UpgradeNumber)
             "<br>CPS: " + (ChildProtectiveServicesUpgradeValue["Type " + UpgradeNumber] * ChildProtectiveServicesUpgradePower["Type " + UpgradeNumber]) +
             "<br>Cost: " + UpgradeCost)
         GoldSecondIncrement += ChildProtectiveServicesUpgradePower["Type " + UpgradeNumber];
-        CPCDIV.innerHTML = "Clicks Per Clicks:" + GoldClickIncrement + " | " + "Clicks Per Second:" + GoldSecondIncrement;
+        CPCDIV.innerHTML = "Clicks Per Clicks: " + GoldClickIncrement + " || " + "Clicks Per Second: " + GoldSecondIncrement;
     }
 }
 
@@ -248,7 +248,7 @@ function CpcButton(UpgradeNumber)
             "<br>CPC: " + (CPCUpgradeValue["Type " + UpgradeNumber] * CPCUpgradePower["Type " + UpgradeNumber]) +
             "<br>Cost: " + UpgradeCost);
         GoldClickIncrement += CPCUpgradePower["Type " + UpgradeNumber];
-        CPCDIV.innerHTML = "Clicks Per Clicks:" + GoldClickIncrement + " | " + "Clicks Per Second:" + GoldSecondIncrement;
+        CPCDIV.innerHTML = "Clicks Per Clicks: " + GoldClickIncrement + " || " + "Clicks Per Second: " + GoldSecondIncrement;
     }
 }
 
