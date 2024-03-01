@@ -189,7 +189,7 @@ function CpsButton(UpgradeNumber)
 
         ChildProtectiveServicesUpgradeValues["Type " + UpgradeNumber] += 1;
         ChildProtectiveServicesUpgradePrices["Type " + UpgradeNumber] *= 2;
-        document.getElementById("CPS type " + UpgradeNumber).innerHTML = "CPS Upgrade type " + UpgradeNumber + "<br>Cost: " + 10
+        document.getElementById("CPS type " + UpgradeNumber).innerHTML = ("CPS Upgrade type " + UpgradeNumber + "<br>Cost: " + UpgradeCost)
     }
 }
 
