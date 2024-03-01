@@ -15,6 +15,7 @@ let GoldSecondIncrement = 0;
 let CritMultiplier = 2;
 
 let HoveringOrMoving = false;
+let ClicksTillMove = 5;
 
 // Current applied status effects
 let Stati =
@@ -89,6 +90,14 @@ function ClickCounter(click)
     {
         Gold = Gold + GoldClickIncrement * CritMultiplier + (GoldClickIncrement * CritMultiplier * Stati["PuncturedBag"]);
         GOLDCOUNTDIV.innerHTML = Gold;
+    }
+
+    // Anti-autoclicker
+    ClicksTillMove -= 1;
+    if (ClicksTillMove == 0)
+    {
+        ClicksTillMove = GetRandomInt(1, 5);
+        hovered();
     }
 }
 
