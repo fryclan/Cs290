@@ -43,6 +43,8 @@ function CPSUpgradeInterval()
     Gold += ChildProtectiveServicesUpgradeValues["Type 1"] * 1;
     Gold += ChildProtectiveServicesUpgradeValues["Type 2"] * 10;
     Gold += ChildProtectiveServicesUpgradeValues["Type 3"] * 100;
+    
+    GoldCountDiv.innerHTML = Gold;
 }
 
 function ClickCounter(click)
@@ -64,6 +66,9 @@ function Init()
     GoldCountDiv = document.getElementById('Gold')
     GOBINDIV = document.getElementById('da-gobin-div');
     GOBINDIV.onmouseover = hovered;
+
+    // Start CPS
+    setInterval(CPSUpgradeInterval, 1000);
 }
 
 
@@ -173,19 +178,18 @@ function hovered()
 
 }
 
-function CpsButton()
+function CpsButton(UpgradeNumber)
 {
-    if (gold >= 10)
+
+    let UpgradeCost = ChildProtectiveServicesUpgradePrices["Type " + UpgradeNumber]
+    if (Gold >= UpgradeCost)
     {
-        gold = gold-10;
-        GoldCountDiv.innerHTML = gold;
-        setInterval(CpsAddition, 1000);
+        Gold = Gold - UpgradeCost;
+        GoldCountDiv.innerHTML = Gold;
+
+        ChildProtectiveServicesUpgradeValues["Type " + UpgradeNumber] += 1;
+        ChildProtectiveServicesUpgradePrices["Type " + UpgradeNumber] *= 2;
     }
-}
-function CpsAddition()
-{
-    gold = gold+1;
-    GoldCountDiv.innerHTML = gold;
 }
 
 /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
