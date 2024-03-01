@@ -6,15 +6,28 @@ const HOVERDELAY = 300, IDLEMOVEDELAY = 5000, MOVETIME = 1000-25; // Millisecond
 
 let GOBINWIGGLIN;
 let GOBINDIV;
+let GoldCountDiv;
+let gold = Number("0");
 
 let hoveringOrMoving = false;
 
-
-function showAlert(msg) {
-    alert(msg);
+function ClickCounter(click)
+{
+    if (click == 'Normal thefting')
+    {
+        gold = gold + 1;
+        GoldCountDiv.innerHTML = gold;
+    }
+    else if (click == 'Crit!')
+    {
+        gold = gold + 2;
+        GoldCountDiv.innerHTML = gold;
+    }
 }
 
-function init() {
+function init() 
+{
+    GoldCountDiv = document.getElementById('Gold')
     GOBINDIV = document.getElementById('da-gobin-div');
     GOBINDIV.onmouseover = hovered;
 }
@@ -28,7 +41,8 @@ function init() {
  * @param {Number} max The highest number it can output.
  * @returns {Number} A random number between the two, inclusive.
  */
-function getRandomInt(min, max) {
+function getRandomInt(min, max)
+{
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -114,5 +128,15 @@ function hovered() {
 
     }
 
+}
+
+/* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
+function myFunction() {
+    var x = document.getElementById("myLinks");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
 }
 

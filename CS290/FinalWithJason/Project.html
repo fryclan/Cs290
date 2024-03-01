@@ -27,14 +27,31 @@
     <title>Steal Bob's Loot</title>
 
   </head>
-
+  
   <body>
-
+    
+    <div>
+      <header id="Gold"> 0 </header>
+    </div>
+    <!-- Top Navigation Menu -->
+    <div class="topnav">
+      <a href="#home" class="active">Logo</a>
+      <!-- Navigation links (hidden by default) -->
+      <div id="myLinks">
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+      </div>
+      <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
     <!-- The Clickable Goblin -->
     <div id="da-gobin-div">
-      <button id="da-gobin-object" onclick="showAlert('Normal thefting')">
+      <button id="da-gobin-object" onclick="ClickCounter('Normal thefting')">
         <!-- The Crit Box -->
-        <button id="da-crit-bocks" onclick="showAlert('Crit!')"></button>
+        <button id="da-crit-bocks" onclick="ClickCounter('Crit!')"></button>
       </button>
     </div>
 
