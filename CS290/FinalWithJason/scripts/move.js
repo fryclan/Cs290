@@ -244,7 +244,7 @@ function CpcButton(UpgradeNumber)
             "<br>CPC: " + (CPCUpgradeValue["Type " + UpgradeNumber] * CPCUpgradePower["Type " + UpgradeNumber]) +
             "<br>Cost: " + UpgradeCost);
         GoldIncrement += CPCUpgradePower["Type " + UpgradeNumber];
-        CPCDIV.innerHTML = GoldIncrement;
+        CPCDIV.innerHTML = "Clicks Per Clicks:" + GoldIncrement;
     }
 }
 
