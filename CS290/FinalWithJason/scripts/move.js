@@ -21,16 +21,6 @@ let Stati = {
 // Usage:
 // dict["some invalid key (for multiple reasons)"] = "value1";
 
-let Stati = {
-    "Slowed": 0,
-    "Restrained": 0,
-    "Vulnerable": 0,
-    "Distracted": 0,
-    "PuncturedBag": 0,
-};
-// Usage:
-// dict["some invalid key (for multiple reasons)"] = "value1";
-
 function ClickCounter(click)
 {
     if (click == 'Normal thefting')
