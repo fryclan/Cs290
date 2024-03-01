@@ -47,7 +47,7 @@ let ChildProtectiveServicesUpgradePrice =
 
 let CPCUpgradeValue =
 {
-    "Type 1": 1,
+    "Type 1": 0,
     "Type 2": 0,
     "Type 3": 0,
 };
