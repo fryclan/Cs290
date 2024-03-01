@@ -31,6 +31,13 @@ let ChildProtectiveServicesUpgradeValues =
     "Type 3": 0,
 };
 
+let ChildProtectiveServicesUpgradePower =
+{
+    "Type 1": 1,
+    "Type 2": 10,
+    "Type 3": 100,
+};
+
 let ChildProtectiveServicesUpgradePrices =
 {
     "Type 1": 10,
@@ -40,9 +47,9 @@ let ChildProtectiveServicesUpgradePrices =
 
 function CPSUpgradeInterval()
 {
-    Gold += ChildProtectiveServicesUpgradeValues["Type 1"] * 1;
-    Gold += ChildProtectiveServicesUpgradeValues["Type 2"] * 10;
-    Gold += ChildProtectiveServicesUpgradeValues["Type 3"] * 100;
+    Gold += ChildProtectiveServicesUpgradeValues["Type 1"] * ChildProtectiveServicesUpgradePower["Type 1"];
+    Gold += ChildProtectiveServicesUpgradeValues["Type 2"] * ChildProtectiveServicesUpgradePower["Type 2"];
+    Gold += ChildProtectiveServicesUpgradeValues["Type 3"] * ChildProtectiveServicesUpgradePower["Type 3"];
     
     GoldCountDiv.innerHTML = Gold;
 }
@@ -190,7 +197,10 @@ function CpsButton(UpgradeNumber)
         ChildProtectiveServicesUpgradeValues["Type " + UpgradeNumber] += 1;
         ChildProtectiveServicesUpgradePrices["Type " + UpgradeNumber] *= 2;
         UpgradeCost = ChildProtectiveServicesUpgradePrices["Type " + UpgradeNumber];
-        document.getElementById("CPS type " + UpgradeNumber).innerHTML = ("CPS Upgrade type " + UpgradeNumber + "<br>Cost: " + UpgradeCost)
+        document.getElementById("CPS type " + UpgradeNumber).innerHTML =
+            ("CPS Upgrade type " + UpgradeNumber +
+            "<br>CPS: " + (ChildProtectiveServicesUpgradeValue["Type " + UpgradeNumber] * ChildProtectiveServicesUpgradePower["Type " + UpgradeNumber]) +
+            "<br>Cost: " + UpgradeCost)
     }
 }
 
