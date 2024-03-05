@@ -83,12 +83,12 @@ function ClickCounter(click)
 {
     if (click == 'Normal thefting')
     {
-        Gold = Gold + GoldClickIncrement + (GoldClickIncrement * Stati["PuncturedBag"]);
+        Gold = Gold + GoldClickIncrement * (1 + Stati["PuncturedBag"]);
         GOLDCOUNTDIV.innerHTML = Gold;
     }
     else if (click == 'Crit!')
     {
-        Gold = Gold + GoldClickIncrement * CritMultiplier + (GoldClickIncrement * CritMultiplier * Stati["PuncturedBag"]);
+        Gold = Gold + GoldClickIncrement * CritMultiplier * ( 1 + Stati["PuncturedBag"]);
         GOLDCOUNTDIV.innerHTML = Gold;
     }
 
