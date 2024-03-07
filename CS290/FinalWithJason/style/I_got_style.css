@@ -46,7 +46,6 @@ h1 {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  /* border: none; */
 
   width: 100%;
   height: 100%;
@@ -57,10 +56,9 @@ h1 {
 #da-crit-bocks {
   display: inline-block;
   background-size: cover;
-  /* min-width: 1px; */
-  width: 1px;
-  height: 5%;
-  opacity: 0.25;
+  width: 25%;
+  height: 20%;
+  opacity: 0.4;
   
   position: absolute;
   top: 60%;
@@ -100,7 +98,7 @@ h1 {
 
 /* Add a grey background color on mouse-over */
 .topnav a:hover {
-  background-color: #ddd;
+  background-color: #00ffa2;
   color: black;
 }
 
