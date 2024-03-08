@@ -53,6 +53,48 @@ h1 {
   position: absolute;
 }
 
+#da-helper1-div {
+  position: absolute;
+  width: 6.9%;
+  height: 6.9%;
+  left: var(--stay-left);
+  top: var(--stay-top);
+}
+
+.da-helper1-div-animated {
+  animation-name: gobin-wigglin;
+  animation-duration: var(--move-time);
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  /* animation: gobin-wigglin 3s linear; */
+}
+
+@keyframes helper1-wigglin {
+  0% {
+    left: var(--old-left);
+    top: var(--old-top);
+  }
+  100% {
+    left: var(--new-left);
+    top: var(--new-top);
+  }
+}
+
+/* The element to apply the animation to */
+#da-helper1-object {
+  opacity: 0;
+  display: inline-block;
+  background-image: url("../assets/BIRTHDAY.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+}
+
 #da-crit-bocks {
   display: inline-block;
   background-size: cover;

@@ -8,6 +8,8 @@ let GOBINWIGGLIN;
 let GOBINDIV;
 let GOLDCOUNTDIV;
 let CPCDIV;
+let HELPER1DIV;
+
 
 let Gold = 0;
 let GoldClickIncrement = 1;
@@ -107,6 +109,7 @@ function Init()
     CPCDIV = document.getElementById('CPC');
     GOBINDIV = document.getElementById('da-gobin-div');
     GOBINDIV.onmouseover = hovered;
+    HELPER1DIV = document.getElementById('da-helper1-div')
 
     // Start CPS
     setInterval(CPSUpgradeInterval, 1000);
@@ -287,3 +290,67 @@ function myFunction()
     }
 }
 
+
+function collide(el1, el2) 
+{
+    var rect1 = el1.getBoundingClientRect();
+    var rect2 = el2.getBoundingClientRect();
+
+    return !(
+    rect1.top > rect2.bottom ||
+    rect1.right < rect2.left ||
+    rect1.bottom < rect2.top ||
+    rect1.left > rect2.right
+    );
+};
+
+function inside(el1, el2) 
+{
+    var rect1 = el1.getBoundingClientRect();
+    var rect2 = el2.getBoundingClientRect();
+
+    return (
+    ((rect2.top <= rect1.top) && (rect1.top <= rect2.bottom)) &&
+    ((rect2.top <= rect1.bottom) && (rect1.bottom <= rect2.bottom)) &&
+    ((rect2.left <= rect1.left) && (rect1.left <= rect2.right)) &&
+    ((rect2.left <= rect1.right) && (rect1.right <= rect2.right))
+    );
+};
+
+function HelperUpgrade()
+{
+    if (HELPER1DIV.style.opacity == 0) 
+    {
+        HELPER1DIV.style.opacity = 1;    
+    }
+    setInterval(collide(GOBINDIV, HELPER1DIV), 50);
+    
+}
+
+//stuff that i stole from stackoverflow
+
+    // var AABB = {
+    //     collide: function (el1, el2) {
+    //       var rect1 = el1.getBoundingClientRect();
+    //       var rect2 = el2.getBoundingClientRect();
+      
+    //       return !(
+    //         rect1.top > rect2.bottom ||
+    //         rect1.right < rect2.left ||
+    //         rect1.bottom < rect2.top ||
+    //         rect1.left > rect2.right
+    //       );
+    //     },
+      
+    //     inside: function (el1, el2) {
+    //       var rect1 = el1.getBoundingClientRect();
+    //       var rect2 = el2.getBoundingClientRect();
+      
+    //       return (
+    //         ((rect2.top <= rect1.top) && (rect1.top <= rect2.bottom)) &&
+    //         ((rect2.top <= rect1.bottom) && (rect1.bottom <= rect2.bottom)) &&
+    //         ((rect2.left <= rect1.left) && (rect1.left <= rect2.right)) &&
+    //         ((rect2.left <= rect1.right) && (rect1.right <= rect2.right))
+    //       );
+    //     }
+    //   };
