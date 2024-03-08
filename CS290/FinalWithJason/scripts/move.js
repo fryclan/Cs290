@@ -88,7 +88,7 @@ function Init()
     setInterval(hovered, 5000);
     
     //start colision cheaks for helper1
-    setInterval(HelperColisionCheck(1));
+    setInterval(HelperColisionCheck(1), 50);
     
 }
 
@@ -184,6 +184,8 @@ function hovered()
 
                 // Reset the variable so it can move when hovered again.
                 HoveringOrMoving = false;
+
+                // TODO: Put actions that fire at the end of his motion here
 
             }, MoveTime);
 
