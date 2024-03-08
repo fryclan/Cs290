@@ -62,7 +62,7 @@ h1 {
 }
 
 .da-helper1-div-animated {
-  animation-name: gobin-wigglin;
+  animation-name: helper1-wigglin;
   animation-duration: var(--move-time);
   animation-iteration-count: infinite;
   animation-timing-function: linear;
