@@ -89,7 +89,7 @@ function HelperUpgrade(UpgradeNumber)
             "<br>CPC: " + (HelperUpgradeValue["Type " + UpgradeNumber] * HelperUpgradeCollisionGold["Type " + UpgradeNumber]) +
             "<br>PocketSize: " + (HelperPocketSize["Type " + UpgradeNumber]) +
             "<br>Cost: " + UpgradeCost);
-        HelperCollisionGold["Type " + UpgradeNumber] += HelperUpgradeCollisionGold["Type " + UpgradeNumber];
+        HelperUpgradeCollisionGold["Type " + UpgradeNumber] += HelperUpgradeCollisionGold["Type " + UpgradeNumber];
         
     }
 
