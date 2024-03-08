@@ -15,6 +15,9 @@ let Gold = 0;
 let GoldClickIncrement = 1;
 let GoldSecondIncrement = 0;
 let CritMultiplier = 2;
+let Helper1Gold = 0;
+let Helper1GoldMaximum = 10;
+let Helper1CollisionGold = 1;
 
 let HoveringOrMoving = false;
 let ClicksTillMove = 5;
@@ -317,14 +320,52 @@ function inside(el1, el2)
     );
 };
 
+let HelperUpgradeValue =
+{
+    "Type 1": 0,
+    "Type 2": 0,
+    "Type 3": 0,
+};
+
+let HelperUpgradePower =
+{
+    "Type 1": 1,
+    "Type 2": 10,
+    "Type 3": 100,
+};
+
+let HelperUpgradePrice =
+{
+    "Type 1": 10,
+    "Type 2": 100,
+    "Type 3": 1000,
+};
+
 function HelperUpgrade()
 {
     if (HELPER1DIV.style.opacity == 0) 
     {
         HELPER1DIV.style.opacity = 1;    
     }
-    setInterval(collide(GOBINDIV, HELPER1DIV), 50);
     
+
+}
+
+function Helper_1_CollisionEffect()
+{
+    if (Helper1Gold <= Helper1GoldMaximum) 
+    {
+        Helper1Gold = Helper1Gold + Helper1CollisionGold;
+    }
+}
+
+//check for collision call function that makes money be added based on helper amount
+function HelperColisionCheck(HelperCollisionEffect)
+{
+    if(collide(GOBINDIV, HELPER1DIV) == false)
+    {
+        HelperCollisionEffect()
+    }
 }
 
 //stuff that i stole from stackoverflow
