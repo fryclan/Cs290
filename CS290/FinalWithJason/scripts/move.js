@@ -15,9 +15,6 @@ let Gold = 0;
 let GoldClickIncrement = 1;
 let GoldSecondIncrement = 0;
 let CritMultiplier = 2;
-let Helper1Gold = 0;
-let Helper1GoldMaximum = 10;
-let Helper1CollisionGold = 1;
 
 let HoveringOrMoving = false;
 let ClicksTillMove = 5;
@@ -341,7 +338,7 @@ let HelperUpgradeValue =
     "Type 3": 0,
 };
 
-let HelperUpgradePower =
+let HelperUpgradeCollisionGold =
 {
     "Type 1": 1,
     "Type 2": 10,
@@ -355,30 +352,67 @@ let HelperUpgradePrice =
     "Type 3": 1000,
 };
 
-function HelperUpgrade()
+let HelperPocketSize = 
+{
+    "Type 1": 10,
+    "Type 2": 100,
+    "Type 3": 1000
+};
+
+let HelperGold = 
+{
+    "Type 1": 0,
+    "Type 2": 0,
+    "Type 3": 0
+}
+
+
+function HelperGoldRequest(UpgradeNumber)
+{
+    GOLDCOUNTDIV.innerHTML = Gold + HelperGold["Type " + UpgradeNumber];
+    HelperGold["Type " + UpgradeNumber] = 0;
+}
+
+function HelperUpgrade(UpgradeNumber)
 {
     if (HELPER1DIV.style.opacity == 0) 
     {
         HELPER1DIV.style.opacity = 1;    
     }
-    
+    let UpgradeCost = HelperUpgradePrice["Type " + UpgradeNumber];
+    if (Gold >= UpgradeCost)
+    {
+        Gold = Gold - UpgradeCost;
+        GOLDCOUNTDIV.innerHTML = Gold;
+
+        HelperUpgradeValue["Type " + UpgradeNumber] += 1;
+        HelperUpgradePrice["Type " + UpgradeNumber] *= 2;
+        UpgradeCost = HelperUpgradePrice["Type " + UpgradeNumber];
+        document.getElementById("Helper" + UpgradeNumber).innerHTML =
+            ("Helper " + UpgradeNumber +
+            "<br>CPC: " + (HelperUpgradeValue["Type " + UpgradeNumber] * HelperUpgradePower["Type " + UpgradeNumber]) +
+            "<br>PocketSize: " + (HelperPocketSize["Type " + UpgradeNumber]) +
+            "<br>Cost: " + UpgradeCost);
+        HelperCollisionGold["Type " + UpgradeNumber] += HelperUpgradePower["Type " + UpgradeNumber];
+        
+    }
 
 }
 
-function Helper_1_CollisionEffect()
+function HelperCollisionEffect(UpgradeNumber)
 {
-    if (Helper1Gold <= Helper1GoldMaximum) 
+    if (HelperGold["Type " + UpgradeNumber] <= HelperGoldMaximum["Type " + UpgradeNumber]) 
     {
-        Helper1Gold = Helper1Gold + Helper1CollisionGold;
+        HelperGold["Type " + UpgradeNumber] = HelperGold["Type " + UpgradeNumber] + HelperCollisionGold["Type " + UpgradeNumber];
     }
 }
 
 //check for collision call function that makes money be added based on helper amount
-function HelperColisionCheck(HelperCollisionEffect)
+function HelperColisionCheck(HelperCollisionEffect,UpgradeNumber)
 {
     if(collide(GOBINDIV, HELPER1DIV) == false)
     {
-        HelperCollisionEffect()
+        HelperCollisionEffect(UpgradeNumber)
     }
 }
 
