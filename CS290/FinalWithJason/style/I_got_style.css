@@ -10,6 +10,14 @@ h1 {
   --stay-top: 50%;
   --stay-left: 50%;
   --move-time: 1s;
+  
+  --helper-1-old-left: 50%;
+  --helper-1-new-left: 50%;
+  --helper-1-old-top: 50%;
+  --helper-1-new-top: 50%;
+  --helper-1-stay-top: 50%;
+  --helper-1-stay-left: 50%;
+  --helper-1-move-time: 1s;
 }
 
 #da-gobin-div {
