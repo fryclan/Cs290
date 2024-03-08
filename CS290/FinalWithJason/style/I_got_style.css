@@ -17,7 +17,7 @@ h1 {
   --helper-1-new-top: 50%;
   --helper-1-stay-top: 50%;
   --helper-1-stay-left: 50%;
-  --helper-1-move-time: 1s;
+  --helper-1-move-time: 3s;
 }
 
 #da-gobin-div {
@@ -79,12 +79,12 @@ h1 {
 
 @keyframes helper1-wigglin {
   0% {
-    left: var(--old-left);
-    top: var(--old-top);
+    left: var(--helper-1-old-left);
+    top: var(--helper-1-old-top);
   }
   100% {
-    left: var(--new-left);
-    top: var(--new-top);
+    left: var(--helper-1-new-left);
+    top: var(--helper-1-new-top);
   }
 }
 
