@@ -262,10 +262,10 @@ function HelperUpgrade(UpgradeNumber)
         UpgradeCost = HelperUpgradePrice["Type " + UpgradeNumber];
         document.getElementById("Helper" + UpgradeNumber).innerHTML =
             ("Helper " + UpgradeNumber +
-            "<br>CPC: " + (HelperUpgradeValue["Type " + UpgradeNumber] * HelperUpgradePower["Type " + UpgradeNumber]) +
+            "<br>CPC: " + (HelperUpgradeValue["Type " + UpgradeNumber] * HelperUpgradeCollisionGold["Type " + UpgradeNumber]) +
             "<br>PocketSize: " + (HelperPocketSize["Type " + UpgradeNumber]) +
             "<br>Cost: " + UpgradeCost);
-        HelperCollisionGold["Type " + UpgradeNumber] += HelperUpgradePower["Type " + UpgradeNumber];
+        HelperCollisionGold["Type " + UpgradeNumber] += HelperUpgradeCollisionGold["Type " + UpgradeNumber];
         
     }
 
@@ -280,7 +280,7 @@ function HelperCollisionEffect(UpgradeNumber)
 }
 
 //check for collision call function that makes money be added based on helper amount
-function HelperColisionCheck(HelperCollisionEffect,UpgradeNumber)
+function HelperColisionCheck(HelperCollisionEffect, UpgradeNumber)
 {
     if(collide(GOBINDIV, HELPER1DIV) == false)
     {
