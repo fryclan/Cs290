@@ -65,8 +65,8 @@ h1 {
   position: absolute;
   width: 6.9%;
   height: 6.9%;
-  left: var(--stay-left);
-  top: var(--stay-top);
+  left: var(--helper-1-stay-left);
+  top: var(--helper-1-stay-top);
 }
 
 .da-helper1-div-animated {
