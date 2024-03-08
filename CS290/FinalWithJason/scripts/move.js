@@ -69,16 +69,22 @@ let CPCUpgradePrice =
     "Type 3": 1000,
 };
 
+/**
+ * Runs on an interval to increase your gold based on the current CPS.
+ */
 function CPSUpgradeInterval()
 {
-    // Gold += ChildProtectiveServicesUpgradeValue["Type 1"] * ChildProtectiveServicesUpgradePower["Type 1"];
-    // Gold += ChildProtectiveServicesUpgradeValue["Type 2"] * ChildProtectiveServicesUpgradePower["Type 2"];
-    // Gold += ChildProtectiveServicesUpgradeValue["Type 3"] * ChildProtectiveServicesUpgradePower["Type 3"];
     Gold += GoldSecondIncrement;
     
     GOLDCOUNTDIV.innerHTML = Gold;
 }
 
+
+/**
+ * Runs on a click, detects the type, runs a chance of running away, and adds gold.
+ *
+ * @param {string} click The type of click. Options are: ['Normal thefting', 'Crit!']
+ */
 function ClickCounter(click)
 {
     if (click == 'Normal thefting')
@@ -101,6 +107,10 @@ function ClickCounter(click)
     }
 }
 
+
+/**
+ * Initializes the CPS, Anticheat loop, and sets the various css-based variables that can't be set early.
+ */
 function Init()
 {
     GOLDCOUNTDIV = document.getElementById('Gold');
@@ -118,7 +128,6 @@ function Init()
 
 /**
  * If you can't figure this out, you shouldn't touch it.
- * @date 2/28/2024 - 9:50:27 AM
  *
  * @param {Number} min The lowest number it can output.
  * @param {Number} max The highest number it can output.
@@ -132,7 +141,6 @@ function GetRandomInt(min, max)
 
 /**
  * Searches throughout all attatched CSS files to find the specified rule. Used here primarily to get keyframes.
- * @date 2/28/2024 - 9:46:30 AM
  *
  * @param {String} Selector The name of the rule being searched for.
  * @returns {CSSRule} The variable containing the rule.
@@ -163,8 +171,7 @@ function FindCssRuleByName(Selector)
 
 
 /**
- * Run when hovering is detected or when a random shuffle is requested, randomizes the opsition of a character and moves there
- * @date 2/28/2024 - 10:06:09 AM
+ * Run when hovering is detected or when a random shuffle is requested, randomizes the opsition of a character and moves there.
  */
 function hovered()
 {
@@ -243,6 +250,13 @@ function CpsButton(UpgradeNumber)
     }
 }
 
+
+/**
+ * Upgrades the value of a click if you have enough money.
+ * @date 3/8/2024 - 11:01:51 AM
+ *
+ * @param {number} UpgradeNumber The click upgrade type
+ */
 function CpcButton(UpgradeNumber)
 {
     
