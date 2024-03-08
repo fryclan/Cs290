@@ -1,6 +1,4 @@
 
-
-
 function collide(el1, el2) 
 {
     var rect1 = el1.getBoundingClientRect();
@@ -27,18 +25,25 @@ function inside(el1, el2)
     );
 };
 
-let HelperUpgradeValue =
+let HelperUpgradeQuantity =
 {
     "Type 1": 0,
     "Type 2": 0,
     "Type 3": 0,
 };
 
-let HelperUpgradeCollisionGold =
+let HelperUpgradeCollisionGoldIncrease =
 {
     "Type 1": 1,
     "Type 2": 10,
     "Type 3": 100,
+};
+
+let HelperUpgradeCollisionGold =
+{
+    "Type 1": 0,
+    "Type 2": 0,
+    "Type 3": 0,
 };
 
 let HelperUpgradePrice =
@@ -48,7 +53,21 @@ let HelperUpgradePrice =
     "Type 3": 1000,
 };
 
+let HelperUpgradeBasePrice =
+{
+    "Type 1": 10,
+    "Type 2": 100,
+    "Type 3": 1000,
+};
+
 let HelperPocketSize = 
+{
+    "Type 1": 0,
+    "Type 2": 0,
+    "Type 3": 0
+};
+
+let HelperPocketSizeBase = 
 {
     "Type 1": 10,
     "Type 2": 100,
@@ -60,7 +79,7 @@ let HelperGold =
     "Type 1": 0,
     "Type 2": 0,
     "Type 3": 0
-}
+};
 
 
 function HelperGoldRequest(UpgradeNumber)
@@ -71,43 +90,107 @@ function HelperGoldRequest(UpgradeNumber)
 
 function HelperUpgrade(UpgradeNumber)
 {
+    UpgradeQuantity = HelperUpgradeQuantity["Type " + UpgradeNumber];
+    UpgradePrice = HelperUpgradePrice["Type " + UpgradeNumber];
+    PocketSize = HelperPocketSize["Type " + UpgradeNumber];
+    PocketSizeBase = HelperPocketSizeBase["Type " + UpgradeNumber];
+    UpgradeBasePrice = HelperUpgradeBasePrice["Type " + UpgradeNumber];
+    CollisionGold = HelperUpgradeCollisionGold["Type " + UpgradeNumber];
+    
+
     if (HELPER1DIV.style.opacity == 0) 
     {
-        HELPER1DIV.style.opacity = 1;    
+        HELPER1DIV.style.opacity = 1;
     }
-    let UpgradeCost = HelperUpgradePrice["Type " + UpgradeNumber];
-    if (Gold >= UpgradeCost)
+    if (Gold >= UpgradePrice)
     {
-        Gold = Gold - UpgradeCost;
+        Gold = Gold - UpgradePrice;
         GOLDCOUNTDIV.innerHTML = Gold;
-
-        HelperUpgradeValue["Type " + UpgradeNumber] += 1;
-        HelperUpgradePrice["Type " + UpgradeNumber] *= 2;
-        UpgradeCost = HelperUpgradePrice["Type " + UpgradeNumber];
-        document.getElementById("Helper" + UpgradeNumber).innerHTML =
-            ("Helper " + UpgradeNumber +
-            "<br>CPC: " + (HelperUpgradeValue["Type " + UpgradeNumber] * HelperUpgradeCollisionGold["Type " + UpgradeNumber]) +
-            "<br>PocketSize: " + (HelperPocketSize["Type " + UpgradeNumber]) +
-            "<br>Cost: " + UpgradeCost);
-        HelperUpgradeCollisionGold["Type " + UpgradeNumber] += HelperUpgradeCollisionGold["Type " + UpgradeNumber];
         
+        UpgradeQuantity += 1;
+        UpgradePrice = UpgradeBasePrice * (2**UpgradeQuantity);
+        PocketSize = PocketSizeBase * UpgradeQuantity;
+        CollisionGold = HelperUpgradeCollisionGoldIncrease["Type " + UpgradeNumber] * UpgradeQuantity;
+
+        document.getElementById("Helper" + UpgradeNumber).innerHTML =
+            ("Helper " + UpgradeNumber + 
+            "<br>CPC: " + (CollisionGold) + 
+            "<br>PocketSize: " + (PocketSize) +
+            "<br>Cost: " + UpgradePrice);
     }
 
+    HelperUpgradeQuantity["Type " + UpgradeNumber] = UpgradeQuantity;
+    HelperPocketSize["Type " + UpgradeNumber] = PocketSize;
+    HelperUpgradePrice["Type " + UpgradeNumber] = UpgradePrice;
+    HelperUpgradeCollisionGold["Type " + UpgradeNumber] = CollisionGold;
 }
 
 function HelperCollisionEffect(UpgradeNumber)
 {
-    if (HelperGold["Type " + UpgradeNumber] <= HelperGoldMaximum["Type " + UpgradeNumber]) 
+    if (HelperGold["Type " + UpgradeNumber] <= HelperPocketSize["Type " + UpgradeNumber]) 
     {
-        HelperGold["Type " + UpgradeNumber] = HelperGold["Type " + UpgradeNumber] + HelperCollisionGold["Type " + UpgradeNumber];
+        HelperGold["Type " + UpgradeNumber] = Math.min(HelperGold["Type " + UpgradeNumber] + HelperUpgradeCollisionGold["Type " + UpgradeNumber], HelperPocketSize["Type " + UpgradeNumber]);
     }
 }
 
-//check for collision call function that makes money be added based on helper amount
-function HelperColisionCheck(HelperCollisionEffect, UpgradeNumber)
+//check for collision call function that applies the collision
+function HelperColisionCheck(UpgradeNumber)
 {
-    if(collide(GOBINDIV, HELPER1DIV) == false)
+    if(collide(GOBINDIV, HELPER1DIV) == false|| inside(GOBINDIV, HELPER1DIV) == false)
     {
-        HelperCollisionEffect(UpgradeNumber)
+        HelperCollisionEffect(UpgradeNumber);
     }
+}
+
+function HelperHovered()
+{
+    
+    if (!HoveringOrMoving)
+    {
+        // Turned back off at the end of the pause and animation.
+        HoveringOrMoving = true;
+
+        // The animation keyframes
+        let HELPERWIGGLIN = FindCssRuleByName('helper1-wigglin');
+
+
+        // Set the start and end points for the animation and final position.
+        // OldLeft = NewLeft;
+        // OldTop = NewTop;
+        // NewTop = GetRandomInt(LOWERTOPBOUND, UPPERTOPBOUND);
+        // NewLeft = GetRandomInt(LOWERLEFTBOUND, UPPERLEFTBOUND);
+
+        // Pauses for a random delay between 0 and .5 seconds before moving.
+        setTimeout(() =>
+        {
+
+            // Modify the CSS vars.
+            ROOTSTYLE.setProperty('--helper-1-old-left', OldLeft+"%");
+            ROOTSTYLE.setProperty('--helper-1-new-left', NewLeft+"%");
+            ROOTSTYLE.setProperty('--helper-1-old-top', OldTop+"%");
+            ROOTSTYLE.setProperty('--helper-1-new-top', NewTop+"%");
+
+            // Add the class which contains the animation details to the gobin to begin the animation.
+            HELPER1DIV.classList.add('da-helper1-div-animated');
+            
+            // Wait for the animation to end.
+            setTimeout(function()
+            {
+
+                // Set the variables which tell the object where to stay after the end of the animation.
+                ROOTSTYLE.setProperty('--helper-1-stay-left', NewLeft+"%");
+                ROOTSTYLE.setProperty('--helper-1-stay-top', NewTop+"%");
+                
+                // Remove the class so it can re-add it to start the animation again.
+                HELPER1DIV.classList.remove('da-helper1-div-animated');
+
+                // Reset the variable so it can move when hovered again.
+                HoveringOrMoving = false;
+
+            }, MoveTime);
+
+        }, GetRandomInt(0, 500));
+
+    }
+
 }

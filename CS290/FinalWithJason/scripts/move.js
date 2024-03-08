@@ -2,7 +2,11 @@ let NewLeft = 50, NewTop = 50; // % accross the screen
 let OldLeft = 50, OldTop = 50; 
 const LOWERLEFTBOUND = 10, LOWERTOPBOUND = 10, UPPERLEFTBOUND = 90, UPPERTOPBOUND = 90; // Limits to where it can be
 
-const HOVERDELAY = 300, IDLEMOVEDELAY = 5000, MOVETIME = 1000-25; // Milliseconds
+const HOVERDELAY = 300, IDLEMOVEDELAY = 5000; // Milliseconds
+
+// Get the CSS root element to modify the vars.
+let ROOTSTYLE;
+
 
 let GOBINWIGGLIN;
 let GOBINDIV;
@@ -29,6 +33,40 @@ let Stati =
     "PuncturedBag": 0,
 };
 
+// Slow Effect
+const SLOWFACTOR = .25, DEFAULTCSSMOVETIME = 1, DEFAULTMOVETIME = 1000-25;
+let MoveTime = DEFAULTMOVETIME, CSSMoveTime = DEFAULTCSSMOVETIME;
+
+
+/**
+ * Applies the given status effect.
+ * @date 3/8/2024 - 1:31:09 PM
+ *
+ * @param {String} effect An item from the dictionary Stati.
+ * @param {String} remove Set to true to remove the specified effect. Only works if time wasnn't used.
+ * @param {String} time The duration of the effect in ms. 
+ */
+function applyStatusEffect(effect, remove = false, time = 0)
+{
+    if (effect === "Slowed")
+    {
+        if (!remove)
+        {
+            CSSMoveTime = DEFAULTCSSMOVETIME * SLOWFACTOR;
+            MoveTime = DEFAULTMOVETIME * SLOWFACTOR;
+        } else
+        {
+            CSSMoveTime = DEFAULTCSSMOVETIME;
+            MoveTime = DEFAULTMOVETIME;
+        }
+        ROOTSTYLE.setProperty('--move-time', CSSMoveTime+"s");
+    }
+
+
+    // Optionally removes the effect after a delay
+    if (time != 0) setTimeout(applyStatusEffect, time, arguments={"effect": effect, "remove": true});
+}
+
 
 /**
  * Initializes the CPS, Anticheat loop, and sets the various css-based variables that can't be set early.
@@ -39,13 +77,19 @@ function Init()
     CPCDIV = document.getElementById('CPC');
     GOBINDIV = document.getElementById('da-gobin-div');
     GOBINDIV.onmouseover = hovered;
-    HELPER1DIV = document.getElementById('da-helper1-div')
+    HELPER1DIV = document.getElementById('da-helper1-div');
+    HELPER1DIV.onmouseover = HelperHovered;
+    ROOTSTYLE = document.querySelector(':root').style;
 
     // Start CPS
     setInterval(CPSUpgradeInterval, 1000);
 
     // Anticheat and bug fixer move every 5 seconds
     setInterval(hovered, 5000);
+    
+    //start colision cheaks for helper1
+    setInterval(HelperColisionCheck(1));
+    
 }
 
 
@@ -118,9 +162,6 @@ function hovered()
         setTimeout(() =>
         {
 
-            // Get the CSS root element to modify the vars.
-            const ROOTSTYLE = document.querySelector(':root').style;
-
             // Modify the CSS vars.
             ROOTSTYLE.setProperty('--old-left', OldLeft+"%");
             ROOTSTYLE.setProperty('--new-left', NewLeft+"%");
@@ -144,13 +185,14 @@ function hovered()
                 // Reset the variable so it can move when hovered again.
                 HoveringOrMoving = false;
 
-            }, MOVETIME);
+            }, MoveTime);
 
         }, GetRandomInt(0, 500));
 
     }
 
 }
+
 
 
 /** Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
@@ -174,32 +216,13 @@ function UpgradeMenu()
     {
       x.style.display = "block";
     }
+    var x = document.getElementById("myLinks3");
+    if (x.style.display === "block")
+    {
+      x.style.display = "none";
+    }
+    else
+    {
+      x.style.display = "block";
+    }
 }
-
-//stuff that i stole from stackoverflow
-
-    // var AABB = {
-    //     collide: function (el1, el2) {
-    //       var rect1 = el1.getBoundingClientRect();
-    //       var rect2 = el2.getBoundingClientRect();
-      
-    //       return !(
-    //         rect1.top > rect2.bottom ||
-    //         rect1.right < rect2.left ||
-    //         rect1.bottom < rect2.top ||
-    //         rect1.left > rect2.right
-    //       );
-    //     },
-      
-    //     inside: function (el1, el2) {
-    //       var rect1 = el1.getBoundingClientRect();
-    //       var rect2 = el2.getBoundingClientRect();
-      
-    //       return (
-    //         ((rect2.top <= rect1.top) && (rect1.top <= rect2.bottom)) &&
-    //         ((rect2.top <= rect1.bottom) && (rect1.bottom <= rect2.bottom)) &&
-    //         ((rect2.left <= rect1.left) && (rect1.left <= rect2.right)) &&
-    //         ((rect2.left <= rect1.right) && (rect1.right <= rect2.right))
-    //       );
-    //     }
-    //   };

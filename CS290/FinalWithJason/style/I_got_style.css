@@ -18,7 +18,26 @@ h1 {
   --helper-1-stay-top: 50%;
   --helper-1-stay-left: 50%;
   --helper-1-move-time: 3s;
+  
+  --helper-2-old-left: 50%;
+  --helper-2-new-left: 50%;
+  --helper-2-old-top: 50%;
+  --helper-2-new-top: 50%;
+  --helper-2-stay-top: 50%;
+  --helper-2-stay-left: 50%;
+  --helper-2-move-time: 3s;
+  
+  --helper-3-old-left: 50%;
+  --helper-3-new-left: 50%;
+  --helper-3-old-top: 50%;
+  --helper-3-new-top: 50%;
+  --helper-3-stay-top: 50%;
+  --helper-3-stay-left: 50%;
+  --helper-3-move-time: 3s;
 }
+
+
+
 
 #da-gobin-div {
   position: absolute;
@@ -26,6 +45,33 @@ h1 {
   height: 6.9%;
   left: var(--stay-left);
   top: var(--stay-top);
+}
+
+/* The element to apply the animation to */
+#da-gobin-object {
+  display: inline-block;
+  background-image: url("../assets/Cropandacoon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+  width: 100%;
+  height: 100%;
+  
+  position: absolute;
+}
+
+#da-crit-bocks {
+  display: inline-block;
+  background-size: cover;
+  width: 25%;
+  height: 20%;
+  opacity: 0.4;
+  
+  position: absolute;
+  top: 60%;
+  left: 45%;
+  transform: translate(-50%, -50%);
 }
 
 .da-gobin-div-animated {
@@ -47,27 +93,32 @@ h1 {
   }
 }
 
-/* The element to apply the animation to */
-#da-gobin-object {
-  display: inline-block;
-  background-image: url("../assets/Cropandacoon.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 
-  width: 100%;
-  height: 100%;
 
-  position: absolute;
-}
 
 #da-helper1-div {
   position: absolute;
-  width: 6.9%;
-  height: 6.9%;
+  width: 6%;
+  height: 6%;
   left: var(--helper-1-stay-left);
   top: var(--helper-1-stay-top);
-  z-index: -1;
+  z-index: 0;
+  opacity: 0;
+}
+
+/* The element to apply the animation to */
+#da-helper1-object {
+  opacity: 1;
+  display: inline-block;
+  background-image: url("../assets/BIRTHDAY.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+  width: 100%;
+  height: 100%;
+  
+  position: absolute;
 }
 
 .da-helper1-div-animated {
@@ -78,46 +129,19 @@ h1 {
   /* animation: gobin-wigglin 3s linear; */
 }
 
-/* The element to apply the animation to */
-#da-helper1-object {
-  opacity: 0.4;
-  display: inline-block;
-  background-image: url("../assets/BIRTHDAY.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  width: 100%;
-  height: 100%;
-
-  position: absolute;
-}
-
-
 @keyframes helper1-wigglin {
   0% {
     left: var(--helper-1-old-left);
     top: var(--helper-1-old-top);
   }
   100% {
-    left: var(--helper-1-new-left);
-    top: var(--helper-1-new-top);
+    left: var(--new-left);
+    top: var(--new-top);
   }
 }
 
 
-#da-crit-bocks {
-  display: inline-block;
-  background-size: cover;
-  width: 25%;
-  height: 20%;
-  opacity: 0.4;
-  
-  position: absolute;
-  top: 60%;
-  left: 45%;
-  transform: translate(-50%, -50%);
-}
+
 
 /* Style the navigation menu */
 .topnav {
