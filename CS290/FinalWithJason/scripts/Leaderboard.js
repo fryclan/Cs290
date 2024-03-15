@@ -12,7 +12,7 @@ function Leaderboard()
 }
 
 
-loadDoc()
+function loadDoc()
 {
     const xhttp = new XMLHttpRequest();
     xhttp.onload = funtion()
@@ -21,4 +21,9 @@ loadDoc()
     }
     xhttp.open("GET", "Leaderboard.txt");
     xhttp.send();
+}
+
+function send()
+{
+    
 }

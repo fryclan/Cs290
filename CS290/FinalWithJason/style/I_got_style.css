@@ -155,36 +155,62 @@ h1 {
   display: none;
 }
 
+
+
 /* Style navigation menu links */
 .topnav a {
-  color: white;
+  color: rgb(255, 255, 255);
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
   display: block;
 }
 
-/* Style the hamburger menu */
-.topnav a.icon {
-  background: black;
-  display: block;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
 /* Add a grey background color on mouse-over */
 .topnav a:hover {
+  background-color: #00ffa2;
+  color: rgb(255, 0, 0);
+}
+
+/* Style the active link (or home/logo) */
+.active {
+  background-color: #ff0000;
+  color: rgb(0, 0, 0);
+}
+
+
+
+
+/* leaderboard styling stuff */
+.Leaderboard {
+  overflow: hidden;
+  background-color: #0af8d8;
+  position: relative;
+}
+
+.Leaderboard #LeaderboardDiv {
+  display: none;
+}
+
+.Leaderboard a {
+  color: rgb(255, 255, 255);
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+
+.Leaderboard a:hover {
   background-color: #00ffa2;
   color: black;
 }
 
 /* Style the active link (or home/logo) */
-.active {
-  background-color: #04AA6D;
+.l_active {
+  background-color: #000000;
   color: white;
 }
-
 
 
 
