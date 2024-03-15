@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <!-- Meta Stuff -->
+    <meta charset="UTF-8">
+    <meta name="description" content="All ya gotta do is kill Bob.">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Fryclan, theDestroyerOfWorlds">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Style and JS File Links -->
+    <link rel="stylesheet" href="./style/I_got_style.css">
+    <link rel="stylesheet" href="./style/login.css">
+    <script src="./scripts/move.js"></script>
+    <script src="./scripts/automoney.js"></script>
+    <script src="./scripts/helpers.js"></script>
+    <script src="./scripts/Login.js"></script>
+    <script src="./scripts/Leaderboard.js"></script>
+
+    <!-- Script Initializer -->
+    <script type="text/javascript">
+
+      window.onload = Init;
+    </script>
+
+    <!-- Tab Display Title/Favicon -->
+    <link rel="icon" href="assets/cropandacoon.png">
+    <title>Steal Bob's Loot</title>
+
+  </head>
+  
+    <body>
+
+        <!-- Leaderboard -->
+        <div class="Leaderboard">
+            <a href="javascript:void(0);" class="l_active" onclick="Leaderboard()">Leaderboard</a>
+
+            <div id="LeaderboardDiv">
+            <button type="button" onclick="loadDoc()">Refresh</button>
+            <button type="button" onclick="SaveData()">Save Game</button>
+            <p id="LeaderboardParagraph"></p>
+            </div>
+        </div>
+
+    </body>
+
+
