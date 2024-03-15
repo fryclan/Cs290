@@ -16,6 +16,7 @@
     <script src="./scripts/automoney.js"></script>
     <script src="./scripts/helpers.js"></script>
     <script src="./scripts/Login.js"></script>
+    <script src="./scripts/Leaderboard.js"></script>
 
     <!-- Script Initializer -->
     <script type="text/javascript">
@@ -71,11 +72,11 @@
       <button id="da-helper1-object" onclick="HelperGoldRequest(1)"></button>
     </div>
 
-    <div class="LeaderboardNav">
-      <a href="javascript:void(0);" class="active" onclick="loadDoc(Leaderboard.txt)">Leaderboard</a>
+    <div class="topnav">
+      <a href="javascript:void(0);" class="active" onclick="Leaderboad()">Leaderboard</a>
 
       <div id="LeaderboardDiv">
-        <button type="button" onclick="loadDoc(Leaderboard.txt)">Refresh</button>
+        <button type="button" onclick="loadDoc()">Refresh</button>
         <button type="button" onclick="send()">Upload high score</button>
       </div>
     </div>
