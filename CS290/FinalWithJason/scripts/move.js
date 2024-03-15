@@ -118,7 +118,8 @@ function FindCssRuleByName(Selector)
   
     for (const Sheet of StyleSheets)
     {
-        try {
+        try
+        {
             const Rules = Sheet.cssRules || Sheet.rules;
             for (const Rule of Rules)
             {
