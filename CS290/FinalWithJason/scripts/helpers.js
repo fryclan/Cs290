@@ -88,6 +88,22 @@ let HelperGold =
 };
 
 
+
+function LoadHelper(data)
+{
+    HelperUpgradeQuantity = data;
+    
+    for (let i = 1; i < 4; i++)
+    {
+        let UpgradeValue = HelperUpgradeQuantity["Type " + i];
+
+        HelperUpgradePrice["Type " + i] = HelperUpgradeBasePrice["Type " + UpgradeNumber] * 2 ** UpgradeValue;
+        HelperUpgradeCollisionGold["Type " + i] = HelperUpgradeCollisionGoldIncrease["Type " + i] * UpgradeValue;
+        HelperPocketSize["Type " + i] = HelperPocketSizeBase["Type " + i] * UpgradeValue;
+    }
+    RefreshGoldIncrement();
+}
+
 function HelperGoldRequest(UpgradeNumber)
 {
     GOLDCOUNTDIV.innerHTML = Gold + HelperGold["Type " + UpgradeNumber];

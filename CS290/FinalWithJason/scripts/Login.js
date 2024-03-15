@@ -1,5 +1,5 @@
 // Create an object with the data you want to send
-let DataToSend = { Type: "Points", Username: 'john_doe', Password: "Password", Points: 0 };
+let DataToSend = { Type: "Points", Username: 'john_doe', Password: "Password", Points: MostData };
 let DataToReceive = { Type: "SignIn", Username: 'john_doe', Password: "Password" };
 let DataToSave = { Type: "Save", Username: 'john_doe', Password: "Password", Data: SaveData() };
 
@@ -9,7 +9,7 @@ function SendData (Data)
     fetch('/api/user', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json', // Set the content type
+            'Content-Type': 'text/json', // Set the content type
         },
         body: JSON.stringify(Data), // Serialize the data
     })
@@ -31,10 +31,10 @@ function SaveData()
 
     Data["Gold"] = Gold;
     Data["MaxGold"] = MaxGold;
-    Data["ChildProtectiveServicesUpgradeValue"] = ChildProtectiveServicesValue;
-    Data["CPCUpgradeValue"] = CPCValue;
+    Data["ChildProtectiveServicesValue"] = ChildProtectiveServicesValue;
+    Data["CPCValue"] = CPCValue;
     Data["HelperUpgradeQuantity"] = HelperUpgradeQuantity;
-    Data["ChildProtectiveServicesUpgradeValue"] = ChildProtectiveServicesValue;
+    Data["ChildProtectiveServicesValue"] = ChildProtectiveServicesValue;
     Data["HelperGold"] = HelperGold;
 
     return Data
@@ -46,9 +46,9 @@ function LoadData(Data)
     Gold = Data["Gold"];
     MaxGold = Data["MaxGold"];
 
-    UpgradeCPS(Data["ChildProtectiveServicesUpgradeValue"]);
-    UpgradeCPC(Data["ChildProtectiveServicesUpgradeValue"]);
-    UpgradeHelper(Data["ChildProtectiveServicesUpgradeValue"]);
+    LoadCPS(Data["ChildProtectiveServicesValue"]);
+    LoadCPC(Data["ChildProtectiveServicesValue"]);
+    LoadHelper(Data["ChildProtectiveServicesValue"]);
 
     HelperGold = Data["HelperGold"];
 }
