@@ -28,8 +28,14 @@ function SendData (Data)
 function SaveData()
 {
     Data = {};
+
     Data["Gold"] = Gold;
     Data["MaxGold"] = MaxGold;
+    Data["ChildProtectiveServicesUpgradeValue"] = ChildProtectiveServicesValue;
+    Data["CPCUpgradeValue"] = CPCValue;
+    Data["HelperUpgradeQuantity"] = HelperUpgradeQuantity;
+    Data["ChildProtectiveServicesUpgradeValue"] = ChildProtectiveServicesValue;
+    Data["HelperGold"] = HelperGold;
 
     return Data
 }
@@ -39,10 +45,18 @@ function LoadData(Data)
 {
     Gold = Data["Gold"];
     MaxGold = Data["MaxGold"];
+
+    UpgradeCPS(Data["ChildProtectiveServicesUpgradeValue"]);
+    UpgradeCPC(Data["ChildProtectiveServicesUpgradeValue"]);
+    UpgradeHelper(Data["ChildProtectiveServicesUpgradeValue"]);
+
+    HelperGold = Data["HelperGold"];
 }
 
 
-/** Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
+/**
+ * Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon
+ */
 function UpgradeMenu()
 {
     var x = document.getElementById("myLinks1");
