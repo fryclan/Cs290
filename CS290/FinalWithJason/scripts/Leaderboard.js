@@ -17,7 +17,7 @@ loadDoc()
     const xhttp = new XMLHttpRequest();
     xhttp.onload = funtion()
     {
-        document.getElementById("Leaderboard").innerHTML = this.responseText;
+        document.getElementById("LeaderboardParagraph").innerHTML = this.responseText;
     }
     xhttp.open("GET", "Leaderboard.txt");
     xhttp.send();
