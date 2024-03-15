@@ -227,4 +227,13 @@ function UpgradeMenu()
     {
       x.style.display = "block";
     }
+    var x = document.getElementById("myLinks4");
+    if (x.style.display === "block")
+    {
+      x.style.display = "none";
+    }
+    else
+    {
+      x.style.display = "block";
+    }
 }
