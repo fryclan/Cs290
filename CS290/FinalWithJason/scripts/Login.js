@@ -1,5 +1,5 @@
 // Create an object with the data you want to send
-let DataToSend = { Type: "Points", Username: 'john_doe', Password: "Password", Points: 0 };
+let DataToSend = { Type: "Points", Username: 'john_doe', Password: "Password", Points: MostData };
 let DataToReceive = { Type: "SignIn", Username: 'john_doe', Password: "Password" };
 let DataToSave = { Type: "Save", Username: 'john_doe', Password: "Password", Data: SaveData() };
 
@@ -9,7 +9,7 @@ function SendData (Data)
     fetch('/api/user', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json', // Set the content type
+            'Content-Type': 'text/json', // Set the content type
         },
         body: JSON.stringify(Data), // Serialize the data
     })
@@ -28,8 +28,14 @@ function SendData (Data)
 function SaveData()
 {
     Data = {};
+
     Data["Gold"] = Gold;
     Data["MaxGold"] = MaxGold;
+    Data["ChildProtectiveServicesValue"] = ChildProtectiveServicesValue;
+    Data["CPCValue"] = CPCValue;
+    Data["HelperUpgradeQuantity"] = HelperUpgradeQuantity;
+    Data["ChildProtectiveServicesValue"] = ChildProtectiveServicesValue;
+    Data["HelperGold"] = HelperGold;
 
     return Data
 }
@@ -39,10 +45,18 @@ function LoadData(Data)
 {
     Gold = Data["Gold"];
     MaxGold = Data["MaxGold"];
+
+    LoadCPS(Data["ChildProtectiveServicesValue"]);
+    LoadCPC(Data["ChildProtectiveServicesValue"]);
+    LoadHelper(Data["ChildProtectiveServicesValue"]);
+
+    HelperGold = Data["HelperGold"];
 }
 
 
-/** Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
+/**
+ * Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon
+ */
 function UpgradeMenu()
 {
     var x = document.getElementById("myLinks1");

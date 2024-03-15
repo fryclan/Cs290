@@ -1,44 +1,84 @@
-let ChildProtectiveServicesUpgradeValue =
+let ChildProtectiveServicesValue =
 {
     "Type 1": 0,
     "Type 2": 0,
     "Type 3": 0,
 };
 
-let ChildProtectiveServicesUpgradePower =
+let ChildProtectiveServicesPower =
 {
     "Type 1": 1,
     "Type 2": 10,
     "Type 3": 100,
 };
 
-let ChildProtectiveServicesUpgradePrice =
+let ChildProtectiveServicesPrice =
 {
     "Type 1": 10,
     "Type 2": 100,
     "Type 3": 1000,
 };
 
-let CPCUpgradeValue =
+let ChildProtectiveServicesBasePrice =
+{
+    "Type 1": 10,
+    "Type 2": 100,
+    "Type 3": 1000,
+};
+
+let CPCValue =
 {
     "Type 1": 0,
     "Type 2": 0,
     "Type 3": 0,
 };
 
-let CPCUpgradePower =
+let CPCPower =
 {
     "Type 1": 1,
     "Type 2": 10,
     "Type 3": 100,
 };
 
-let CPCUpgradePrice =
+let CPCPrice =
 {
     "Type 1": 10,
     "Type 2": 100,
     "Type 3": 1000,
 };
+
+let CPCBasePrice =
+{
+    "Type 1": 10,
+    "Type 2": 100,
+    "Type 3": 1000,
+};
+
+
+function LoadCPS(data)
+{
+    ChildProtectiveServicesValue = data;
+    
+    for (let i = 1; i < 4; i++)
+    {
+        let UpgradeValue = ChildProtectiveServicesValue["Type " + i];
+        ChildProtectiveServicesPrice["Type " + i] = ChildProtectiveServicesBasePrice["Type " + UpgradeNumber] * 2 ** UpgradeValue;
+    }
+    RefreshGoldIncrement();
+}
+
+
+function LoadCPC(data)
+{
+    CPCValue = data;
+    
+    for (let i = 1; i < 4; i++)
+    {
+        let UpgradeValue = CPCValue["Type " + i];
+        CPCPrice["Type " + i] = CPCBasePrice["Type " + UpgradeNumber] * 2 ** UpgradeValue;
+    }
+    RefreshGoldIncrement();
+}
 
 
 /**
@@ -47,38 +87,64 @@ let CPCUpgradePrice =
 function CPSUpgradeInterval()
 {
     Gold += GoldSecondIncrement;
-    
+
     GOLDCOUNTDIV.innerHTML = Gold;
 
 
 
-    // Checks to see if it's the most gold you've ever had
-    if (Gold > MostGold)
-    {
-        MostGold = Gold;
-        Send(MostGold);
-    }
+    // // Checks to see if it's the most gold you've ever had
+    // if (Gold > MostGold)
+    // {
+    //     MostGold = Gold;
+    //     Send(MostGold);
+    // }
 }
 
 
+function RefreshGoldIncrement()
+{
+    GoldSecondIncrement = 0;
+
+    for (let i = 1; i < 4; i++)
+    {
+        GoldSecondIncrement += ChildProtectiveServicesValue["Type " + i] * ChildProtectiveServicesPower["Type " + i];
+    }
+
+    for (let i = 1; i < 4; i++)
+    {
+        GoldClickIncrement += CPCValue["Type " + i] * CPCPower["Type " + i];
+    }
+
+    CPCDIV.innerHTML = "Clicks Per Clicks: " + GoldClickIncrement + " || " + "Clicks Per Second: " + GoldSecondIncrement;
+}
+
+
+/**
+ * Upgrades the money earned per second if you have enough money.
+ * @date 3/15/2024 - 12:37:54 PM
+ *
+ * @param {*} UpgradeNumber
+ */
 function CpsButton(UpgradeNumber)
 {
 
-    let UpgradeCost = ChildProtectiveServicesUpgradePrice["Type " + UpgradeNumber];
-    if (Gold >= UpgradeCost)
-    {
+    let UpgradeCost = ChildProtectiveServicesPrice["Type " + UpgradeNumber];
+    if (Gold >= UpgradeCost) {
         Gold = Gold - UpgradeCost;
         GOLDCOUNTDIV.innerHTML = Gold;
 
-        ChildProtectiveServicesUpgradeValue["Type " + UpgradeNumber] += 1;
-        ChildProtectiveServicesUpgradePrice["Type " + UpgradeNumber] *= 2;
-        UpgradeCost = ChildProtectiveServicesUpgradePrice["Type " + UpgradeNumber];
+        ChildProtectiveServicesValue["Type " + UpgradeNumber] += 1;
+        let UpgradeValue = ChildProtectiveServicesValue["Type " + UpgradeNumber];
+        ChildProtectiveServicesPrice["Type " + UpgradeNumber] = ChildProtectiveServicesBasePrice["Type " + UpgradeNumber] * 2 ** UpgradeValue;
+
+        UpgradeCost = ChildProtectiveServicesPrice["Type " + UpgradeNumber];
+
         document.getElementById("CPS type " + UpgradeNumber).innerHTML =
             ("CPS Upgrade type " + UpgradeNumber +
-            "<br>CPS: " + (ChildProtectiveServicesUpgradeValue["Type " + UpgradeNumber] * ChildProtectiveServicesUpgradePower["Type " + UpgradeNumber]) +
-            "<br>Cost: " + UpgradeCost)
-        GoldSecondIncrement += ChildProtectiveServicesUpgradePower["Type " + UpgradeNumber];
-        CPCDIV.innerHTML = "Clicks Per Clicks: " + GoldClickIncrement + " || " + "Clicks Per Second: " + GoldSecondIncrement;
+                "<br>CPS: " + (UpgradeValue * ChildProtectiveServicesPower["Type " + UpgradeNumber]) +
+                "<br>Cost: " + UpgradeCost);
+                
+        RefreshGoldIncrement();
     }
 }
 
@@ -91,22 +157,24 @@ function CpsButton(UpgradeNumber)
  */
 function CpcButton(UpgradeNumber)
 {
-    
-    let UpgradeCost = CPCUpgradePrice["Type " + UpgradeNumber];
+
+    let UpgradeCost = CPCPrice["Type " + UpgradeNumber];
     if (Gold >= UpgradeCost)
     {
         Gold = Gold - UpgradeCost;
         GOLDCOUNTDIV.innerHTML = Gold;
 
-        CPCUpgradeValue["Type " + UpgradeNumber] += 1;
-        CPCUpgradePrice["Type " + UpgradeNumber] *= 2;
-        UpgradeCost = CPCUpgradePrice["Type " + UpgradeNumber];
+        CPCValue["Type " + UpgradeNumber] += 1;
+        CPCPrice["Type " + UpgradeNumber] *= 2;
+        UpgradeCost = CPCPrice["Type " + UpgradeNumber];
         document.getElementById("CPC type " + UpgradeNumber).innerHTML =
-            ("CPC Upgrade type " + UpgradeNumber +
-            "<br>CPC: " + (CPCUpgradeValue["Type " + UpgradeNumber] * CPCUpgradePower["Type " + UpgradeNumber]) +
-            "<br>Cost: " + UpgradeCost);
-        GoldClickIncrement += CPCUpgradePower["Type " + UpgradeNumber];
-        CPCDIV.innerHTML = "Clicks Per Clicks: " + GoldClickIncrement + " || " + "Clicks Per Second: " + GoldSecondIncrement;
+            (
+                "CPC Upgrade type " + UpgradeNumber +
+                "<br>CPC: " + (CPCValue["Type " + UpgradeNumber] * CPCPower["Type " + UpgradeNumber]) +
+                "<br>Cost: " + UpgradeCost
+            );
+        
+        RefreshGoldIncrement();
     }
 }
 
@@ -125,7 +193,7 @@ function ClickCounter(click)
     }
     else if (click == 'Crit!')
     {
-        Gold = Gold + GoldClickIncrement * CritMultiplier * ( 1 + Stati["PuncturedBag"]);
+        Gold = Gold + GoldClickIncrement * CritMultiplier * (1 + Stati["PuncturedBag"]);
         GOLDCOUNTDIV.innerHTML = Gold;
     }
 
@@ -136,10 +204,4 @@ function ClickCounter(click)
         ClicksTillMove = GetRandomInt(1, 5);
         hovered();
     }
-}
-
-
-function Send(amount)
-{
-    
 }
