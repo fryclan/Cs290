@@ -49,6 +49,15 @@ function CPSUpgradeInterval()
     Gold += GoldSecondIncrement;
     
     GOLDCOUNTDIV.innerHTML = Gold;
+
+
+
+    // Checks to see if it's the most gold you've ever had
+    if (Gold > MostGold)
+    {
+        MostGold = Gold;
+        Send(MostGold);
+    }
 }
 
 
@@ -127,4 +136,10 @@ function ClickCounter(click)
         ClicksTillMove = GetRandomInt(1, 5);
         hovered();
     }
+}
+
+
+function Send(amount)
+{
+    
 }

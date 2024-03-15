@@ -56,7 +56,32 @@
         <button id="Helper1" onclick="HelperUpgrade(1)">Helper 1<br>CPC: 0<br>Pocket Size: 0<br>Cost: 10</button>
       </div>
       <div id="myLinks4">
-        <button id="Helper1" onclick="HelperUpgrade(1)">Helper 1<br>CPC: 0<br>Pocket Size: 0<br>Cost: 10</button>
+        <!-- Login button -->
+        <button class="open-button" onclick="openForm()">Open Form</button>
+        
+        <div class="form-popup" id="myForm">
+          <form action="/signup" method="post" id="signup" class="form-container">
+            <h1>Login</h1>
+        
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" required>
+        
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+        
+            <button type="submit" class="btn">Login</button>
+            <button type="signup" class="btn">Sign Up</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+          </form>
+        </div>
+        <div>
+          <form  class="form-container" class="already-signed-in" id="signed-in-menu">
+            <h1>You're already Logged in!</h1>
+            <p>Refresh the page to sign out.</p>
+
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+          </form>
+        </div>
       </div>
     </div>
     <!-- The Clickable Goblin -->

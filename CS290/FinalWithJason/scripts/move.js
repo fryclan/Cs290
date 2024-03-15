@@ -1,8 +1,11 @@
-let NewLeft = 50, NewTop = 50; // % accross the screen
+// % accross the screen.
+let NewLeft = 50, NewTop = 50;
 let OldLeft = 50, OldTop = 50; 
-const LOWERLEFTBOUND = 10, LOWERTOPBOUND = 10, UPPERLEFTBOUND = 90, UPPERTOPBOUND = 90; // Limits to where it can be
+    // Limits to where the Gobin can be moved to.
+const LOWERLEFTBOUND = 10, LOWERTOPBOUND = 10, UPPERLEFTBOUND = 90, UPPERTOPBOUND = 90;
 
-const HOVERDELAY = 300, IDLEMOVEDELAY = 5000; // Milliseconds
+// Milliseconds
+const HOVERDELAY = 300, IDLEMOVEDELAY = 5000;
 
 // Get the CSS root element to modify the vars.
 let ROOTSTYLE;
@@ -16,12 +19,17 @@ let HELPER1DIV;
 
 
 let Gold = 0;
+let MostGold = 0;
 let GoldClickIncrement = 1;
 let GoldSecondIncrement = 0;
 let CritMultiplier = 2;
 
 let HoveringOrMoving = false;
 let ClicksTillMove = 5;
+
+let Username = ""
+let SignedIn = false
+
 
 // Current applied status effects
 let Stati =
@@ -237,4 +245,22 @@ function UpgradeMenu()
     {
       x.style.display = "block";
     }
+}
+
+function openForm() 
+{
+    if (!SignedIn)
+    {
+        document.getElementById("myForm").style.display = "block";
+    }
+    else
+    {
+        document.getElementById("signed-in-menu").style.display = "block";
+    }
+}
+
+function closeForm() 
+{
+    document.getElementById("myForm").style.display = "none";
+    document.getElementById("signed-in-menu").style.display = "none";
 }
