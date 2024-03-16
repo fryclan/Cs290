@@ -1,7 +1,7 @@
 // Create an object with the data you want to send
 let DataToSend = { Type: "Points", Username: 'john_doe', Password: "Password", Points: MostData };
 let DataToReceive = { Type: "SignIn", Username: 'john_doe', Password: "Password" };
-let DataToSave = { Type: "Save", Username: 'john_doe', Password: "Password", Data: SaveData() };
+let DataToSave = { Type: "Save", Username: 'john_doe', Password: "Password", Data: {} };
 
 // Make a POST request to the server
 function SendData (Data)
@@ -37,7 +37,8 @@ function SaveData()
     Data["ChildProtectiveServicesValue"] = ChildProtectiveServicesValue;
     Data["HelperGold"] = HelperGold;
 
-    return Data
+    DataToSave = { Type: "Save", Username: 'john_doe', Password: "Password", Data: data };
+    SendData(DataToSave);
 }
 
 
@@ -114,3 +115,36 @@ function closeForm()
     document.getElementById("myForm").style.display = "none";
     document.getElementById("signed-in-menu").style.display = "none";
 }
+
+
+
+
+
+
+
+// $(document).ready(function() {
+//     $('#loginForm').submit(function(event) {
+//         event.preventDefault(); // Prevent default form submission
+
+//         // Get username and password from form inputs
+//         var username = $('#username').val();
+//         var password = $('#password').val();
+
+//         // Send AJAX POST request
+//         $.ajax({
+//             type: 'POST',
+//             url: '/login', // Specify your server endpoint
+//             data: { username: username, password: password },
+//             success: function(response) {
+//                 // Handle successful response from server
+//                 console.log('Login successful');
+//                 // Redirect or update UI as needed
+//             },
+//             error: function(xhr, status, error) {
+//                 // Handle error response from server
+//                 console.error('Login failed:', error);
+//                 // Display error message or take appropriate action
+//             }
+//         });
+//     });
+// });
